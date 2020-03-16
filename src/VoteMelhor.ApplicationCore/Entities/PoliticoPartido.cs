@@ -1,19 +1,22 @@
-﻿namespace VoteMelhor.ApplicationCore.Entities
+﻿using System;
+
+namespace VoteMelhor.ApplicationCore.Entities
 {
     public class PoliticoPartido: Entity
     {
-        public int PoliticoId { get; private set; }
+        public Guid PoliticoId { get; private set; }
 
-        public int PartidoId { get; private set; }
+        public Guid PartidoId { get; private set; }
 
         public virtual Politico Politico { get; private set; }
 
         public virtual Partido Partido { get; private set; }
 
-        public PoliticoPartido(Politico politico, Partido partido)
+        public PoliticoPartido(Guid id, Guid politicoid, Guid partidoid)
         {
-            Politico = politico;
-            Partido = partido;
+            Id = id;
+            PoliticoId = politicoid;
+            PartidoId = partidoid;
         }
 
         // Empty constructor for EF

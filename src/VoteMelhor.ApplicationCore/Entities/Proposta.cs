@@ -18,12 +18,8 @@ namespace VoteMelhor.ApplicationCore.Entities
         public string Descricao { get; private set; }
 
         public DateTime DtProposta { get; private set; }        
-        
-        public int PoliticoId { get; private set; }
 
-        public virtual Politico Politico { get; private set; }
-
-        public Proposta(Guid id, CasaLegislativa casalegislativa, TipoProposta tipoproposta, string numeracao, string resumo, string descricao, DateTime dtproposta, int politicoid)
+        public Proposta(Guid id, CasaLegislativa casalegislativa, TipoProposta tipoproposta, string numeracao, string resumo, string descricao, DateTime dtproposta)
         {
             Id = id;
             CasaLegislativa = casalegislativa;
@@ -32,7 +28,6 @@ namespace VoteMelhor.ApplicationCore.Entities
             Resumo = resumo;
             Descricao = descricao;
             DtProposta = dtproposta;
-            PoliticoId = politicoid;
         }
 
         // Empty constructor for EF

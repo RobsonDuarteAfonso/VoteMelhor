@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VoteMelhor.ApplicationCore.Enumations;
 
 namespace VoteMelhor.ApplicationCore.Entities
@@ -9,15 +10,15 @@ namespace VoteMelhor.ApplicationCore.Entities
 
         public DateTime DtVotacao { get; private set; }
 
-        public int PoliticoId { get; private set; }
+        public Guid PoliticoId { get; private set; }
 
-        public int PropostaId { get; private set; }
+        public Guid PropostaId { get; private set; }
 
         public virtual Proposta Proposta { get;  private set; }
 
         public virtual Politico Politico { get; private set; }
 
-        public Votacao(Guid id, Voto voto, DateTime dtvotacao, int politicoid, int propostaid)
+        public Votacao(Guid id, Voto voto, DateTime dtvotacao, Guid politicoid, Guid propostaid)
         {
             Id = id;
             Voto = voto;

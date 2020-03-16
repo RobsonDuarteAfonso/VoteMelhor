@@ -5,20 +5,20 @@ namespace VoteMelhor.ApplicationCore.Enumations
     public enum Situacao
     {
         [Description("Arquivado")]
-        AQ,
+        ARQ,
         [Description("Inocentado")]
-        IN,
+        INC,
         [Description("Condenado 1a Instância")]
-        C1,
+        CD1,
         [Description("Condenado 2a Instância")]
-        C2,
+        CD2,
         [Description("Condenado 3a Instância")]
-        C3,
+        CD3,
         [Description("Condenado Última Instância")]
-        C4,
+        CD4,
         [Description("Prescrito")]
-        PR,
+        PRC,
         [Description("Denúnciado")]
-        DE
+        DEN
     }
 }

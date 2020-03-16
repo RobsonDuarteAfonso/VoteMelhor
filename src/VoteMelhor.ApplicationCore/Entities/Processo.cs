@@ -15,11 +15,11 @@ namespace VoteMelhor.ApplicationCore.Entities
 
         public Situacao Situacao { get; private set; }
 
-        public int PoliticoId { get; private set; }
+        public Guid PoliticoId { get; private set; }
 
         public virtual Politico Politico { get; private set; }
 
-        public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, Situacao situacao, int politicoid)
+        public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, Situacao situacao, Guid politicoid)
         {
             Id = id;
             Resumo = resumo;

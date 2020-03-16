@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VoteMelhor.ApplicationCore.Enumations;
 
 namespace VoteMelhor.ApplicationCore.Entities
@@ -14,6 +15,8 @@ namespace VoteMelhor.ApplicationCore.Entities
         public string Facebook { get; private set; }
 
         public Perfil Perfil { get; private set; }
+
+        public ICollection<Classificacao> Classificacoes { get; private set; }
 
         public Usuario(Guid id, string nome, string email, string senha, string facebook, Perfil perfil)
         {

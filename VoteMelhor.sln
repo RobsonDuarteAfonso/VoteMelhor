@@ -19,6 +19,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteMelhor.WebApi", "src\VoteMelhor.WebApi\VoteMelhor.WebApi.csproj", "{8F04DC17-C8D1-4C75-A439-DAA0B5B4F351}"
 	ProjectSection(ProjectDependencies) = postProject
 		{41F01860-0392-4A68-8D0A-9DAB7D63C788} = {41F01860-0392-4A68-8D0A-9DAB7D63C788}
+		{8937F992-45E1-4015-9B3D-E97B3F2C85C4} = {8937F992-45E1-4015-9B3D-E97B3F2C85C4}
 	EndProjectSection
 EndProject
 Global

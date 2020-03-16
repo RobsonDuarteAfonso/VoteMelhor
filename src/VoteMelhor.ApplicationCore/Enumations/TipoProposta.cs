@@ -7,7 +7,7 @@ namespace VoteMelhor.ApplicationCore.Enumations
         [Description("PROPOSTA DE EMENDA À CONSTITUIÇÃO")]
         PEC,
         [Description("PROJETO DE LEI")]
-        PL,
+        PJL,
         [Description("PROJETO DE LEI DA CÂMARA")]
         PLC,
         [Description("PROJETO DE LEI DO SENADO")]

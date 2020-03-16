@@ -5,12 +5,12 @@ namespace VoteMelhor.ApplicationCore.Enumations
     public enum Rate
     {
         [Description("Excelente")]
-        EX,
+        EXC,
         [Description("Bom")]
-        BM,
+        BOM,
         [Description("Ruim")]
-        RU,
+        RUI,
         [Description("Péssimo")]
-        PS
+        PSM
     }
 }
