@@ -8,6 +8,8 @@ namespace VoteMelhor.ApplicationCore.Enumations
         EXC,
         [Description("Bom")]
         BOM,
+        [Description("Indiferente")]
+        IND,
         [Description("Ruim")]
         RUI,
         [Description("Péssimo")]

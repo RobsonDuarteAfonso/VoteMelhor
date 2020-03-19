@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
 
-namespace VoteMelhor.ApplicationCore.Interfaces
+namespace VoteMelhor.ApplicationCore.Interfaces.Services
 {
-    public interface IRepository<TEntity> : IDisposable where TEntity : class
+    public interface IService<TEntity> where TEntity : class
     {
         void Add(TEntity obj);
         TEntity GetById(Guid id);
         IQueryable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(Guid id);
-        int SaveChanges();
     }
 }

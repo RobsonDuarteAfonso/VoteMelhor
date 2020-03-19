@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using VoteMelhor.ApplicationCore.Interfaces;
+using System.Threading.Tasks;
+using VoteMelhor.ApplicationCore.Interfaces.Repositories;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -19,6 +20,7 @@ namespace VoteMelhor.Infra.Data.Repositories
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
+            SaveChanges();
         }
 
         public virtual TEntity GetById(Guid id)
@@ -34,17 +36,24 @@ namespace VoteMelhor.Infra.Data.Repositories
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
+            SaveChanges();
         }
 
         public virtual void Remove(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
+            SaveChanges();
         }
 
-        public int SaveChanges()
+        public void SaveChanges()
         {
-            return Db.SaveChanges();
+            Db.SaveChanges();
         }
+
+        //public async Task<bool> SaveChangesAsync()
+        //{
+        //    return await Db.SaveChangesAsync() > 0;
+        //}
 
         public void Dispose()
         {

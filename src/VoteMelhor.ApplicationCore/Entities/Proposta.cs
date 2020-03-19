@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using VoteMelhor.ApplicationCore.Enumations;
 
 namespace VoteMelhor.ApplicationCore.Entities
@@ -8,15 +6,10 @@ namespace VoteMelhor.ApplicationCore.Entities
     public class Proposta : Entity
     {
         public CasaLegislativa CasaLegislativa { get; private set; }
-
         public TipoProposta TipoProposta { get; private set; }
-
         public string Numeracao { get; private set; }
-
         public string Resumo { get; private set; }
-
         public string Descricao { get; private set; }
-
         public DateTime DtProposta { get; private set; }        
 
         public Proposta(Guid id, CasaLegislativa casalegislativa, TipoProposta tipoproposta, string numeracao, string resumo, string descricao, DateTime dtproposta)

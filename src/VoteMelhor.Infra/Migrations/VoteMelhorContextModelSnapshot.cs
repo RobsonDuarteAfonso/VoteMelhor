@@ -33,6 +33,11 @@ namespace VoteMelhor.Infra.Migrations
                         .HasColumnType("varchar(3)")
                         .HasMaxLength(3);
 
+                    b.Property<string>("RatePublico")
+                        .IsRequired()
+                        .HasColumnType("varchar(3)")
+                        .HasMaxLength(3);
+
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 

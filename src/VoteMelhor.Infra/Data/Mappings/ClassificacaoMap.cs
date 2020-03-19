@@ -12,8 +12,11 @@ namespace VoteMelhor.Infra.Data.Mappings
 
             builder.Property(c => c.Rate)
                 .HasColumnType("varchar(3)")
-                .HasMaxLength(3)
-                .IsRequired();
+                .HasMaxLength(3);
+
+            builder.Property(c => c.RatePublico)
+                .HasColumnType("varchar(3)")
+                .HasMaxLength(3);
 
             builder.HasOne(c => c.Politico)
                 .WithMany(c => c.Classificacoes)

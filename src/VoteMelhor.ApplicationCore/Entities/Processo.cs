@@ -6,17 +6,11 @@ namespace VoteMelhor.ApplicationCore.Entities
     public class Processo : Entity
     {
         public string Resumo { get; private set; }
-
         public string Detalhe { get; private set; }
-
         public DateTime DtPublicacao { get; private set; }
-
         public DateTime DtAtualizacao { get; private set; }
-
         public Situacao Situacao { get; private set; }
-
         public Guid PoliticoId { get; private set; }
-
         public virtual Politico Politico { get; private set; }
 
         public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, Situacao situacao, Guid politicoid)
