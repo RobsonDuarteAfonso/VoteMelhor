@@ -12,6 +12,7 @@ namespace VoteMelhor.Infra.Data.Mappings
         public void Configure(EntityTypeBuilder<Politico> builder)
         {
             builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedNever();
 
             builder.Property(c => c.Nome)
                 .HasColumnType("varchar(100)")
@@ -24,7 +25,7 @@ namespace VoteMelhor.Infra.Data.Mappings
                 .IsRequired();
 
             builder.Property(c => c.Imagem)
-                .HasColumnType("varchar(50)")
+                .HasColumnType("varchar(100)")
                 .HasMaxLength(12)
                 .IsRequired();
 
@@ -37,6 +38,14 @@ namespace VoteMelhor.Infra.Data.Mappings
                .HasForeignKey(c => c.PoliticoId);
 
             builder.HasMany(c => c.Votacoes)
+               .WithOne(c => c.Politico)
+               .HasForeignKey(c => c.PoliticoId);
+
+            builder.HasMany(c => c.Classificacoes)
+               .WithOne(c => c.Politico)
+               .HasForeignKey(c => c.PoliticoId);
+
+            builder.HasMany(c => c.Cargos)
                .WithOne(c => c.Politico)
                .HasForeignKey(c => c.PoliticoId);
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using VoteMelhor.ApplicationCore.Enumations;
 using VoteMelhor.ApplicationCore.Interfaces.Services;
 using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.Util;
+using VoteMelhor.WebApi.Validations;
 
 namespace VoteMelhor.WebApi.Controllers
 {
@@ -16,29 +18,39 @@ namespace VoteMelhor.WebApi.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly TokenService _tokenService;
+        private readonly CreateUsuarioValidation _createUsuarioValidation;
 
-        public UsuarioController(IUsuarioService usuarioService, TokenService tokenService)
+        public UsuarioController(IUsuarioService usuarioService, TokenService tokenService, CreateUsuarioValidation createUsuarioValidation)
         {
             _usuarioService = usuarioService;
             _tokenService = tokenService;
+            _createUsuarioValidation = createUsuarioValidation;
         }
 
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody]Usuario model)
         {
-            var usuario = _usuarioService.AutenticarUsuario(model);
-
-            if (usuario == null)
-                return NotFound(new { message = "Usuário ou senha inválidos" });
-
-            string token = _tokenService.GenerateToken(usuario);
-            return new
+            try
             {
-                usuario = usuario,
-                token = token
-            };
+                var usuario = _usuarioService.AutenticarUsuario(model);
+
+                if (usuario == null)
+                    return NotFound(new { message = "Usuário ou senha inválidos" });
+
+                string token = _tokenService.GenerateToken(usuario);
+                return new
+                {
+                    usuario,
+                    token
+                };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
 
         }
 
@@ -57,6 +69,11 @@ namespace VoteMelhor.WebApi.Controllers
         [AuthorizeEnum(Perfil.USR, Perfil.ADM, Perfil.EDT)]
         public string Usuario() => "Usuário";
 
+        /// <summary>
+        /// Cadastrar Novo Usuário
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("create")]
         [AllowAnonymous]
@@ -64,8 +81,17 @@ namespace VoteMelhor.WebApi.Controllers
         {
             try
             {
-                _usuarioService.Add(model);
-                return Ok(model);
+                ValidationResult result = _createUsuarioValidation.Validate(model);
+
+                if (result.IsValid)
+                {
+                    _usuarioService.Add(model);
+                    return Ok(model);
+                } 
+                else
+                {
+                    return BadRequest(result.Errors);                
+                }
             }
             catch(Exception ex)
             {

@@ -10,6 +10,10 @@ namespace VoteMelhor.Infra.Data.Mappings
         {
             builder.HasKey(c => c.Id);
 
+            builder.Property(c => c.Atual)
+                .HasColumnType("int")
+                .IsRequired();
+
             builder.HasOne(c => c.Politico)
                 .WithMany(c => c.PoliticoPartidos)
                 .HasForeignKey(c => c.PoliticoId);

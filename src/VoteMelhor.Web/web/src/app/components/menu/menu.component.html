@@ -1,16 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="home">
+<header #header>
+  <div class="container">
     <img src="../../../assets/images/logo.svg">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Pesquisar</a>
-      <a class="nav-item nav-link" href="#">Propósito</a>
-      <a class="nav-item nav-link" href="#">Contato</a>
+    <div class="menu-section" [className]="show ? 'menu-section on' : 'menu-section'">
+      <div class="menu-toggle" (click)="menuToggle()">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+      </div>
+      <nav>
+        <ul>
+          <li class="item"><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOME</a></li>
+          <li class="item"><a [routerLink]="['/pesquisar']" routerLinkActive="active">PESQUISAR</a></li>
+          <li class="item"><a [routerLink]="['/proposito']" routerLinkActive="active">PROPÓSITO</a></li>
+          <li class="item"><a [routerLink]="['/contato']" routerLinkActive="active">CONTATO</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
-</nav>
+</header>

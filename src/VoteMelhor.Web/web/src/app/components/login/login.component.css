@@ -1,0 +1,22 @@
+.login, .novoCadastro {
+  height: 300px;
+}
+
+label {
+  float: left;
+  font-weight: bold;
+  color: #999;
+}
+
+button {
+  float: left;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group-text {
+  background-color: #F8C500 !important;
+}

@@ -7,12 +7,12 @@ namespace VoteMelhor.ApplicationCore.Entities
     {
         public Voto Voto { get; private set; }
         public DateTime DtVotacao { get; private set; }
-        public Guid PoliticoId { get; private set; }
+        public int PoliticoId { get; private set; }
         public Guid PropostaId { get; private set; }
         public virtual Proposta Proposta { get;  private set; }
         public virtual Politico Politico { get; private set; }
 
-        public Votacao(Guid id, Voto voto, DateTime dtvotacao, Guid politicoid, Guid propostaid)
+        public Votacao(Guid id, Voto voto, DateTime dtvotacao, int politicoid, Guid propostaid)
         {
             Id = id;
             Voto = voto;

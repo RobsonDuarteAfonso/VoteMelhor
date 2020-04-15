@@ -12,5 +12,10 @@ namespace VoteMelhor.ApplicationCore.Services
         {
             _politicoRepository = politicoRepository;
         }
+
+        public void AddNewPolitico(Politico politico)
+        {
+            _politicoRepository.AddNewPolitico(politico);
+        }
     }
 }

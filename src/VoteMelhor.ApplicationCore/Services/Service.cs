@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VoteMelhor.ApplicationCore.Interfaces.Repositories;
 using VoteMelhor.ApplicationCore.Interfaces.Services;
 
@@ -19,9 +21,14 @@ namespace VoteMelhor.ApplicationCore.Services
             _repository.Add(obj);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public Task<TEntity> AddAsync(TEntity obj)
         {
-            return _repository.GetAll();
+            return _repository.AddAsync(obj);
+        }
+
+        public Task<TEntity> GetByIdAsync(Guid id)
+        {
+            return _repository.GetByIdAsync(id);
         }
 
         public TEntity GetById(Guid id)
@@ -29,14 +36,34 @@ namespace VoteMelhor.ApplicationCore.Services
             return _repository.GetById(id);
         }
 
-        public void Remove(Guid id)
+        public Task<ICollection<TEntity>> GetAllAsync()
         {
-            _repository.Remove(id);
+            return _repository.GetAllAsync();
+        }
+
+        public IQueryable<TEntity> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
+        public Task<TEntity> UpdateAsync(TEntity obj)
+        {
+            return _repository.UpdateAsync(obj);
         }
 
         public void Update(TEntity obj)
         {
             _repository.Update(obj);
+        }
+
+        public Task<TEntity> RemoveAsync(Guid id)
+        {
+            return _repository.RemoveAsync(id);
+        }
+
+        public void Remove(Guid id)
+        {
+            _repository.Remove(id);
         }
     }
 }

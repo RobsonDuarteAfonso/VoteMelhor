@@ -29,6 +29,13 @@ namespace VoteMelhor.Infra.Data.Mappings
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100);
 
+            builder.Property(c => c.Status)
+                .HasColumnType("int");
+
+            builder.Property(c => c.CodigoConfirmacao)
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
             builder.Property(c => c.Perfil)
                 .HasColumnType("varchar(3)")
                 .HasMaxLength(3)

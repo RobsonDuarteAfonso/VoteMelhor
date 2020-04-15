@@ -1,0 +1,42 @@
+/* a {
+  color: rgb(190, 190, 190) !important;
+  font-weight: bold;
+}
+
+a.active {
+  color: #999 !important;
+  font-weight: bold;
+}
+
+.containerLogin {
+  margin-top: 50px;
+} */
+
+section {
+  font-size: 1.6rem;
+  color: rgb(73, 73, 73);
+  padding-top: 50px;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: justify;
+  margin-bottom: 50px;
+}
+
+section .container {
+  display: flex;
+  width: 960px;
+  margin: auto;
+}
+
+section .container .buttons {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 200px;
+}
+

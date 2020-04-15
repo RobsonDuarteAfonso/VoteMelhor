@@ -1,0 +1,200 @@
+[
+    {
+        "sigla": "MDB",
+        "nome":"MOVIMENTO DEMOCRÁTICO BRASILEIRO",
+        "numero": 15,
+        "imagem":"mdb.png"
+    },
+    {
+        "sigla": "PTB",
+        "nome":"PARTIDO TRABALHISTA BRASILEIRO",
+        "numero": 14,
+        "imagem":"ptb.png"
+    },
+    {
+        "sigla": "PDT",
+        "nome":"PARTIDO DEMOCRÁTICO TRABALHISTA",
+        "numero": 12,
+        "imagem":"pdt.png"
+    },
+    {
+        "sigla": "PT",
+        "nome":"PARTIDO DOS TRABALHADORES",
+        "numero": 13,
+        "imagem":"pt.png"
+    },
+    {
+        "sigla": "DEM",
+        "nome":"DEMOCRATAS",
+        "numero": 25,
+        "imagem":"dem.png"
+    },
+    {
+        "sigla": "PCdoB",
+        "nome":"PARTIDO COMUNISTA DO BRASIL",
+        "numero": 65,
+        "imagem":"pcdob.png"
+    },
+    {
+        "sigla": "PSB",
+        "nome":"PARTIDO SOCIALISTA BRASILEIRO",
+        "numero": 40,
+        "imagem":"psb.png"
+    },
+    {
+        "sigla": "PSDB",
+        "nome":"PARTIDO DA SOCIAL DEMOCRACIA BRASILEIRA",
+        "numero": 45,
+        "imagem":"psdb.png"
+    },
+    {
+        "sigla": "PTC",
+        "nome":"PARTIDO TRABALHISTA CRISTÃO",
+        "numero": 36,
+        "imagem":"ptc.png"
+    },
+    {
+        "sigla": "PSC",
+        "nome":"PARTIDO SOCIAL CRISTÃO",
+        "numero": 20,
+        "imagem":"psc.png"
+    },
+    {
+        "sigla": "PMN",
+        "nome":"PARTIDO DA MOBILIZAÇÃO NACIONAL",
+        "numero": 33,
+        "imagem":"pmn.png"
+    },
+    {
+        "sigla": "CIDADANIA",
+        "nome":"CIDADANIA",
+        "numero": 23,
+        "imagem":"cidadania.png"
+    },
+    {
+        "sigla": "PV",
+        "nome":"PARTIDO VERDE",
+        "numero": 43,
+        "imagem":"pv.png"
+    },
+    {
+        "sigla": "AVANTE",
+        "nome":"AVANTE",
+        "numero": 70,
+        "imagem":"avante.png"
+    },
+    {
+        "sigla": "PP",
+        "nome":"PROGRESSISTAS",
+        "numero": 11,
+        "imagem":"pp.png"
+    },
+    {
+        "sigla": "PSTU",
+        "nome":"PARTIDO SOCIALISTA DOS TRABALHADORES UNIFICADO",
+        "numero": 16,
+        "imagem":"pstu.png"
+    },
+    {
+        "sigla": "PCB",
+        "nome":"PARTIDO COMUNISTA BRASILEIRO",
+        "numero": 21,
+        "imagem":"pcb.png"
+    },
+    {
+        "sigla": "PRTB",
+        "nome":"PARTIDO RENOVADOR TRABALHISTA BRASILEIRO",
+        "numero": 28,
+        "imagem":"prtb.png"
+    },
+    {
+        "sigla": "DC",
+        "nome":"DEMOCRACIA CRISTÃ",
+        "numero": 27,
+        "imagem":"dc.png"
+    },
+    {
+        "sigla": "PCO",
+        "nome":"PARTIDO DA CAUSA OPERÁRIA",
+        "numero": 29,
+        "imagem":"pco.png"
+    },
+    {
+        "sigla": "PODE",
+        "nome":"PODEMOS",
+        "numero": 19,
+        "imagem":"pode.png"
+    },
+    {
+        "sigla": "PSL",
+        "nome":"PARTIDO SOCIAL LIBERAL",
+        "numero": 17,
+        "imagem":"psl.png"
+    },
+    {
+        "sigla": "REPUBLICANOS ",
+        "nome":"REPUBLICANOS",
+        "numero": 10,
+        "imagem":"republicanos.png"
+    },
+    {
+        "sigla": "PSOL",
+        "nome":"PARTIDO SOCIALISMO E LIBERDADE",
+        "numero": 50,
+        "imagem":"psol.png"
+    },
+    {
+        "sigla": "PL",
+        "nome":"PARTIDO LIBERAL",
+        "numero": 22,
+        "imagem":"pl.png"
+    },
+    {
+        "sigla": "PSD",
+        "nome":"PARTIDO SOCIAL DEMOCRÁTICO",
+        "numero": 55,
+        "imagem":"psd.png"
+    },
+    {
+        "sigla": "PATRIOTA",
+        "nome":"PATRIOTA",
+        "numero": 51,
+        "imagem":"patriota.png"
+    },
+    {
+        "sigla": "PROS",
+        "nome":"PARTIDO REPUBLICANO DA ORDEM SOCIAL",
+        "numero": 90,
+        "imagem":"pros.png"
+    },
+    {
+        "sigla": "SOLIDARIEDADE",
+        "nome":"SOLIDARIEDADE",
+        "numero": 77,
+        "imagem":"solidariedade.png"
+    },
+    {
+        "sigla": "NOVO",
+        "nome":"PARTIDO NOVO",
+        "numero": 30,
+        "imagem":"novo.png"
+    },
+    {
+        "sigla": "REDE",
+        "nome":"REDE SUSTENTABILIDADE",
+        "numero": 18,
+        "imagem":"rede.png"
+    },
+    {
+        "sigla": "PMB",
+        "nome":"PARTIDO DA MULHER BRASILEIRA",
+        "numero": 35,
+        "imagem":"pmb.png"
+    },
+    {
+        "sigla": "UP",
+        "nome":"UNIDADE POPULAR",
+        "numero": 80,
+        "imagem":"up.png"
+    }
+]

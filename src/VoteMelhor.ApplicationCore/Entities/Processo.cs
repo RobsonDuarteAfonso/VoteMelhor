@@ -10,10 +10,10 @@ namespace VoteMelhor.ApplicationCore.Entities
         public DateTime DtPublicacao { get; private set; }
         public DateTime DtAtualizacao { get; private set; }
         public Situacao Situacao { get; private set; }
-        public Guid PoliticoId { get; private set; }
+        public int PoliticoId { get; private set; }
         public virtual Politico Politico { get; private set; }
 
-        public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, Situacao situacao, Guid politicoid)
+        public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, Situacao situacao, int politicoid)
         {
             Id = id;
             Resumo = resumo;

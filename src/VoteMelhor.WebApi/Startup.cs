@@ -12,7 +12,9 @@ using VoteMelhor.ApplicationCore.Interfaces.Services;
 using VoteMelhor.ApplicationCore.Services;
 using VoteMelhor.Infra.Data;
 using VoteMelhor.Infra.Data.Repositories;
+using VoteMelhor.WebApi.AutoMapper;
 using VoteMelhor.WebApi.Services;
+using VoteMelhor.WebApi.Validations;
 
 namespace VoteMelhor.WebApi
 {
@@ -41,11 +43,24 @@ namespace VoteMelhor.WebApi
 
             // Application
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IPoliticoService, PoliticoService>();
+            services.AddScoped<IPartidoService, PartidoService>();
+            services.AddScoped<ICargoService, CargoService>();
+            services.AddScoped<IPoliticoPartidoService, PoliticoPartidoService>();
 
             // Infra - Data
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IPoliticoRepository, PoliticoRepository>();
+            services.AddScoped<IPartidoRepository, PartidoRepository>();
+            services.AddScoped<ICargoRepository, CargoRepository>();
+            services.AddScoped<IPoliticoPartidoRepository, PoliticoPartidoRepository>();
             services.AddScoped<VoteMelhorContext>();
 
+            //Validações
+            services.AddScoped<CreateUsuarioValidation>();
+
+            // AutoMapper Settings
+            services.AddAutoMapperSetup();
 
 
 

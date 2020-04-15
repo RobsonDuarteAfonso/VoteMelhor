@@ -1,0 +1,33 @@
+<div class="login">
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-6">
+      <label for="Email">Email</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Email">
+            <i class="material-icons md-24 colordefault">email</i>
+          </span>
+        </div>
+      <input type="email" class="form-control" formControlName="email" id="Email" aria-describedby="emailHelp" placeholder="Digite o seu Email">
+      </div>
+      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+    <div class="form-group col-md-6">
+      <label for="Senha">Senha</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="Senha">
+            <i class="material-icons md-24 colordefault">lock</i>
+          </span>
+        </div>
+        <input type="password" class="form-control" formControlName="senha" id="Senha" placeholder="Digite sua Senha">
+      </div>
+    </div>
+    <div class="form-group col-md-6 botoes">
+      <button type="submit" class="btn btn-success">Enviar</button>
+      <button type="button" class="btn btn-outline-primary">Esqueci Minha Senha</button>
+    </div>
+  </form>
+
+</div>

@@ -16,7 +16,7 @@ namespace VoteMelhor.Infra.Data.Mappings
                 .IsRequired();
 
             builder.Property(c => c.Sigla)
-                .HasColumnType("varchar(10)")
+                .HasColumnType("varchar(50)")
                 .HasMaxLength(10)
                 .IsRequired();
 
@@ -25,7 +25,7 @@ namespace VoteMelhor.Infra.Data.Mappings
                 .IsRequired();
 
             builder.Property(c => c.Imagem)
-                .HasColumnType("varchar(50)")
+                .HasColumnType("varchar(100)")
                 .HasMaxLength(50);
 
             builder.HasMany(c => c.PoliticoPartidos)

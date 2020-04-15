@@ -13,6 +13,7 @@ namespace VoteMelhor.Infra.Data
 
         }
 
+        public DbSet<Cargo> Cargos { get; set; }
         public DbSet<Classificacao> Classificacoes { get; set; }
         public DbSet<Partido> Partidos { get; set; }
         public DbSet<Politico> Politicos { get; set; }
@@ -29,6 +30,7 @@ namespace VoteMelhor.Infra.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new CargoMap());
             modelBuilder.ApplyConfiguration(new ClassificacaoMap());
             modelBuilder.ApplyConfiguration(new PartidoMap());
             modelBuilder.ApplyConfiguration(new PoliticoMap());

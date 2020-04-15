@@ -18,7 +18,7 @@ namespace VoteMelhor.ApplicationCore.Enumations
         LCS,
         [Description("Licença Maternidade")]
         LCM,
-        [Description("Licença Adodante")]
+        [Description("Licença Adotante")]
         LCA,
         [Description("Licença Paternidade")]
         LCP,

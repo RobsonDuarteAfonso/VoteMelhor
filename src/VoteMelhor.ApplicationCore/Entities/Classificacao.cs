@@ -8,11 +8,11 @@ namespace VoteMelhor.ApplicationCore.Entities
         public Rate Rate { get; private set; }
         public Rate RatePublico { get; private set; }
         public Guid UsuarioId { get; private set; }
-        public Guid PoliticoId { get; private set; }
+        public int PoliticoId { get; private set; }
         public virtual Usuario Usuario { get; private set; }
         public virtual Politico Politico { get; private set; }
 
-        public Classificacao(Guid id, Rate rate, Rate ratepublico, Guid usuarioid, Guid politicoid)
+        public Classificacao(Guid id, Rate rate, Rate ratepublico, Guid usuarioid, int politicoid)
         {
             Id = id;
             Rate = rate;
