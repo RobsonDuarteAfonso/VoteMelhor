@@ -38,8 +38,8 @@ namespace VoteMelhor.WebApi
 
             Configuration = builder.Build();
 
-             services.AddDbContext<VoteMelhorContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<VoteMelhorContext>(options => 
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors();
             services.AddControllers()
