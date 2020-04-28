@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using VoteMelhor.ApplicationCore.Entities;
 using VoteMelhor.ApplicationCore.Interfaces.Repositories;
 
@@ -14,7 +16,8 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         public void AddNewPolitico(Politico politico)
         {
-            using (var transaction = Db.Database.BeginTransaction())
+            using var transaction = Db.Database.BeginTransaction();
+            try
             {
                 Db.Politicos.Add(politico);
                 Db.Politicos.FromSqlRaw("SET IDENTITY_INSERT VoteMelhor.Politicos ON;");
@@ -22,6 +25,15 @@ namespace VoteMelhor.Infra.Data.Repositories
                 Db.Politicos.FromSqlRaw("SET IDENTITY_INSERT VoteMelhor.Politicos OFF;");
                 transaction.Commit();
             }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+            }
+        }
+
+        public Politico VerifyExist(int id)
+        {
+            return DbSet.FirstOrDefault(c => c.Id == id);
         }
     }
 }

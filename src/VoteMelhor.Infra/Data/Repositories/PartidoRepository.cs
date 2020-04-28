@@ -15,5 +15,10 @@ namespace VoteMelhor.Infra.Data.Repositories
         {
             return DbSet.FirstOrDefault(c => c.Sigla == partido.Sigla && c.Numero == partido.Numero);
         }
+
+        public Partido VerifyExist(string sigla)
+        {
+            return DbSet.FirstOrDefault(c => c.Sigla == sigla);
+        }
     }
 }

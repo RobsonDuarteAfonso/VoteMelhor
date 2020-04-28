@@ -13,7 +13,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.Nome))
                 .ForMember(dest => dest.Atual, opt => opt.MapFrom(src => src.Atual))
                 .ForMember(dest => dest.Politico, opt => opt.MapFrom(src => src.Politico))
-                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore());
+                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
+                .ReverseMap();
 
             CreateMap<ClassificacaoViewModel, Classificacao>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -22,7 +23,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Politico, opt => opt.MapFrom(src => src.Politico))
                 .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Usuario))
                 .ForMember(dest => dest.UsuarioId, dest => dest.Ignore())
-                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore());
+                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
+                .ReverseMap();
 
             CreateMap<PartidoViewModel, Partido>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -30,7 +32,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero))
                 .ForMember(dest => dest.Sigla, opt => opt.MapFrom(src => src.Sigla))
                 .ForMember(dest => dest.Imagem, opt => opt.MapFrom(src => src.Imagem))
-                .ForMember(dest => dest.PoliticoPartidos, opt => opt.MapFrom(src => src.PoliticoPartidos));
+                .ForMember(dest => dest.PoliticoPartidos, opt => opt.MapFrom(src => src.PoliticoPartidos))
+                .ReverseMap();
 
             CreateMap<PoliticoViewModel, Politico>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -41,7 +44,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.PoliticoPartidos, opt => opt.MapFrom(src => src.PoliticoPartidos))
                 .ForMember(dest => dest.Processos, opt => opt.MapFrom(src => src.Processos))
                 .ForMember(dest => dest.Classificacoes, opt => opt.MapFrom(src => src.Classificacoes))
-                .ForMember(dest => dest.Votacoes, opt => opt.MapFrom(src => src.Votacoes));
+                .ForMember(dest => dest.Votacoes, opt => opt.MapFrom(src => src.Votacoes))
+                .ReverseMap();
 
             CreateMap<PoliticoPartidoViewModel, PoliticoPartido>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -49,7 +53,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Politico, opt => opt.MapFrom(src => src.Politico))
                 .ForMember(dest => dest.Partido, opt => opt.MapFrom(src => src.Partido))
                 .ForMember(dest => dest.PartidoId, dest => dest.Ignore())
-                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore());
+                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
+                .ReverseMap();
 
             CreateMap<ProcessoViewModel, Processo>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -58,7 +63,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.DtAtualizacao, opt => opt.MapFrom(src => src.DtAtualizacao))
                 .ForMember(dest => dest.DtPublicacao, opt => opt.MapFrom(src => src.DtPublicacao))
                 .ForMember(dest => dest.Situacao, opt => opt.MapFrom(src => src.Situacao))
-                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore());
+                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
+                .ReverseMap();
 
             CreateMap<PropostaViewModel, Proposta>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -67,7 +73,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Numeracao, opt => opt.MapFrom(src => src.Numeracao))
                 .ForMember(dest => dest.Resumo, opt => opt.MapFrom(src => src.Resumo))
                 .ForMember(dest => dest.Descricao, opt => opt.MapFrom(src => src.Descricao))
-                .ForMember(dest => dest.DtProposta, opt => opt.MapFrom(src => src.DtProposta));
+                .ForMember(dest => dest.DtProposta, opt => opt.MapFrom(src => src.DtProposta))
+                .ReverseMap();
 
             CreateMap<UsuarioViewModel, Usuario>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -78,7 +85,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.CodigoConfirmacao, opt => opt.MapFrom(src => src.CodigoConfirmacao))
                 .ForMember(dest => dest.Perfil, opt => opt.MapFrom(src => src.Perfil))
-                .ForMember(dest => dest.Classificacoes, opt => opt.MapFrom(src => src.Classificacoes));
+                .ForMember(dest => dest.Classificacoes, opt => opt.MapFrom(src => src.Classificacoes))
+                .ReverseMap();
 
             CreateMap<VotacaoViewModel, Votacao>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
@@ -87,7 +95,8 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Politico, opt => opt.MapFrom(src => src.Politico))
                 .ForMember(dest => dest.Proposta, opt => opt.MapFrom(src => src.Proposta))
                 .ForMember(dest => dest.PropostaId, dest => dest.Ignore())
-                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore());
+                .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
+                .ReverseMap();
         }
     }
 }

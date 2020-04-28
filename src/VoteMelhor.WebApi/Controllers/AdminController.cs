@@ -12,6 +12,7 @@ using VoteMelhor.ApplicationCore.Entities;
 using VoteMelhor.ApplicationCore.Enumations;
 using VoteMelhor.ApplicationCore.Interfaces.Services;
 using VoteMelhor.WebApi.Raws;
+using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.ViewModels;
 
 namespace VoteMelhor.WebApi.Controllers
@@ -41,43 +42,103 @@ namespace VoteMelhor.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("update-politicos")]
+        [Route("add-senadores")]
         //[AuthorizeEnum(Perfil.ADM)]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> UpdatePoliticos()
+        public async Task<ActionResult<dynamic>> AddSenadores()
         {
-            using (var httpClient = new HttpClient())
-            {
-                using var response = await httpClient.GetAsync("http://legis.senado.leg.br/dadosabertos/senador/lista/atual");
-                string apiResponse = await response.Content.ReadAsStringAsync();
+                try
+                {
 
-                XmlDocument doc = new XmlDocument();
-                doc.LoadXml(apiResponse);
+                var senadoFederalService = new SenadoFederalService();
 
-                string jsonString = JsonConvert.SerializeXmlNode(doc);
-
-                // Site para gerar a class do objeto: jsonutils.com
-                PoliticosSenadores_Raw jsonNet = JsonConvert.DeserializeObject<PoliticosSenadores_Raw>(jsonString);
+                var jsonNet = await senadoFederalService.GetListaSenadores();
 
                 foreach (var item in jsonNet.ListaParlamentarEmExercicio.Parlamentares.Parlamentar)
                 {
-                    PoliticoViewModel _politico = new PoliticoViewModel();
-                    PoliticoPartidoViewModel _politicoPartido = new PoliticoPartidoViewModel();
-
                     var itemrecebido = item.IdentificacaoParlamentar;
 
-                    _politico.Id = Convert.ToInt32(itemrecebido.CodigoParlamentar);
-                    _politico.Nome = itemrecebido.NomeParlamentar;
-                    _politico.Imagem = itemrecebido.UrlFotoParlamentar;
-                    _politico.Estado = (Estado)Enum.Parse(typeof(Estado), itemrecebido.UfParlamentar);
+                    if (_politicoService.VerifyExist(Convert.ToInt32(itemrecebido.CodigoParlamentar)) == null)
+                    {
+                        PoliticoViewModel _politico = new PoliticoViewModel();
+                        PoliticoPartidoViewModel _politicoPartido = new PoliticoPartidoViewModel();
+                        CargoViewModel _cargo = new CargoViewModel();
+                        PartidoViewModel _partido = new PartidoViewModel();
 
-                    _politicoService.AddNewPolitico(_mapper.Map<Politico>(_politico));
+                        _politico.Id = Convert.ToInt32(itemrecebido.CodigoParlamentar);
+                        _politico.Nome = itemrecebido.NomeParlamentar;
+                        _politico.Imagem = itemrecebido.UrlFotoParlamentar;
+                        _politico.Estado = (Estado)Enum.Parse(typeof(Estado), itemrecebido.UfParlamentar);
 
-                    Ok("Sucesso");
+                        _politicoService.AddNewPolitico(_mapper.Map<Politico>(_politico));
+
+                        _partido = _mapper.Map<PartidoViewModel>(_partidoService.VerifyExist(itemrecebido.SiglaPartidoParlamentar));
+
+                        if (_partido == null)
+                        {
+                            return BadRequest($"Partido com a sigla { itemrecebido.SiglaPartidoParlamentar } não existe.");
+                        }
+
+                        _politicoPartido = _mapper.Map<PoliticoPartidoViewModel>(_politicoPartidoService.VerifyExist(_politico.Id, _partido.Id));
+
+                        if (_politicoPartido == null)
+                        {
+                            _politicoPartidoService.SetAtual(_politico.Id, 0);
+
+                            _politicoPartido.Atual = 1;
+                            _politicoPartido.Partido = _partido;
+                            _politicoPartido.Politico = _politico;
+
+                            _politicoPartidoService.Add(_mapper.Map<PoliticoPartido>(_politicoPartido));
+                        }
+                        else
+                        {
+                            if (_politicoPartido.Atual != 1)
+                            {
+                                _politicoPartido.Atual = 1;
+                                _politicoPartidoService.SetAtual(_politico.Id, 0);
+                                _politicoPartidoService.Update(_mapper.Map<PoliticoPartido>(_politicoPartido));
+                            }
+                        }
+
+                        _cargo.Nome = "Senador";
+                        _cargo.Politico = _politico;
+
+                        _cargo = _mapper.Map<CargoViewModel>(_cargoService.VerifyExist(_mapper.Map<Cargo>(_cargo)));
+
+                        if (_cargo == null)
+                        {
+                            _cargoService.SetAtual(_politico.Id, 0);
+
+                            _cargo.Atual = 1;
+                            _cargo.Politico = _politico;
+                            _cargo.Nome = "Senador";
+
+                            _cargoService.Add(_mapper.Map<Cargo>(_cargo));
+                        }
+                        else
+                        {
+                            if (_cargo.Atual != 1)
+                            {
+                                _cargo.Atual = 1;
+                                _cargoService.SetAtual(_politico.Id, 0);
+                                _cargoService.Update(_mapper.Map<Cargo>(_cargo));
+                            }
+                        }
+
+                        Ok("Sucesso");
+                    }
 
                 }
+
                 return Ok("Sucesso");
-            }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest($"Erro: {ex.Message}");
+                }
+
+                
         }
 
         [HttpGet]
@@ -106,11 +167,11 @@ namespace VoteMelhor.WebApi.Controllers
 
                     if (_partidoService.VerifyExist(partido) == null)
                     {
-                        _partidoService.Add(partido);
+                       await _partidoService.AddAsync(partido);
                     }
                     else
                     {
-                        _partidoService.Update(partido);
+                       await _partidoService.UpdateAsync(partido);
                     }
                 }
                 

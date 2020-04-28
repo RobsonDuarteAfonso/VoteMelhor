@@ -23,10 +23,6 @@ namespace VoteMelhor.Infra.Data
         public DbSet<Votacao> Votacoes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=VoteMelhor;Data Source=PC-ROBSON\\SQLEXPRESS");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

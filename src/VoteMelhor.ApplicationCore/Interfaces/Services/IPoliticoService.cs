@@ -6,5 +6,6 @@ namespace VoteMelhor.ApplicationCore.Interfaces.Services
     public interface IPoliticoService : IService<Politico>
     {
         void AddNewPolitico(Politico politico);
+        Politico VerifyExist(int id);
     }
 }

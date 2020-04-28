@@ -17,5 +17,10 @@ namespace VoteMelhor.ApplicationCore.Services
         {
             return _partidoRepository.VerifyExist(partido);
         }
+
+        public Partido VerifyExist(string sigla)
+        {
+            return _partidoRepository.VerifyExist(sigla);
+        }
     }
 }

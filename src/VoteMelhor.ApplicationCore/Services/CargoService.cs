@@ -12,5 +12,15 @@ namespace VoteMelhor.ApplicationCore.Services
         {
             _cargoRepository = cargoRepository;
         }
+
+        public Cargo VerifyExist(Cargo cargo)
+        {
+            return _cargoRepository.VerifyExist(cargo);
+        }
+
+        public void SetAtual(int politicoId, int valor)
+        {
+            _cargoRepository.SetAtual(politicoId, valor);
+        }
     }
 }

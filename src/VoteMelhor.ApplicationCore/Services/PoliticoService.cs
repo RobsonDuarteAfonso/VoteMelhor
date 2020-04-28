@@ -17,5 +17,10 @@ namespace VoteMelhor.ApplicationCore.Services
         {
             _politicoRepository.AddNewPolitico(politico);
         }
+
+        public Politico VerifyExist(int id)
+        {
+            return _politicoRepository.VerifyExist(id);
+        }
     }
 }
