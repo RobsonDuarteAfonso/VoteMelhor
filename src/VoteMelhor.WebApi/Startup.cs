@@ -9,14 +9,13 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using System.IO;
 using System.Text;
-using VoteMelhor.ApplicationCore.Interfaces.Repositories;
-using VoteMelhor.ApplicationCore.Interfaces.Services;
-using VoteMelhor.ApplicationCore.Services;
+using VoteMelhor.Domain.Interfaces.Repositories;
+using VoteMelhor.Domain.Interfaces.Services;
+using VoteMelhor.Domain.Services;
 using VoteMelhor.Infra.Data;
 using VoteMelhor.Infra.Data.Repositories;
 using VoteMelhor.WebApi.AutoMapper;
 using VoteMelhor.WebApi.Services;
-using VoteMelhor.WebApi.Validations;
 
 namespace VoteMelhor.WebApi
 {
@@ -68,7 +67,7 @@ namespace VoteMelhor.WebApi
             services.AddTransient<VoteMelhorContext>();
 
             //Validations
-            services.AddScoped<CreateUsuarioValidation>();
+            //services.AddScoped<CreateUsuarioValidation>();
 
             // AutoMapper Settings
             services.AddAutoMapperSetup();

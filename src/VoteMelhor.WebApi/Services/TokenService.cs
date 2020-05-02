@@ -4,7 +4,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using VoteMelhor.ApplicationCore.Entities;
+using VoteMelhor.Domain.Entities;
 
 namespace VoteMelhor.WebApi.Services
 {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VoteMelhor.ApplicationCore.Interfaces.Repositories;
+using VoteMelhor.Domain.Interfaces.Repositories;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {

@@ -23,3 +23,8 @@ section .container {
 .material-icons.colorIcon {
   color: #f8c500;
 }
+
+.card-img-top {
+  object-fit: cover;
+  max-height: 272px;
+}

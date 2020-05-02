@@ -8,9 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
-using VoteMelhor.ApplicationCore.Entities;
-using VoteMelhor.ApplicationCore.Enumations;
-using VoteMelhor.ApplicationCore.Interfaces.Services;
+using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Enumations;
+using VoteMelhor.Domain.Interfaces.Services;
 using VoteMelhor.WebApi.Raws;
 using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.ViewModels;
@@ -68,7 +68,7 @@ namespace VoteMelhor.WebApi.Controllers
                         _politico.Id = Convert.ToInt32(itemrecebido.CodigoParlamentar);
                         _politico.Nome = itemrecebido.NomeParlamentar;
                         _politico.Imagem = itemrecebido.UrlFotoParlamentar;
-                        _politico.Estado = (Estado)Enum.Parse(typeof(Estado), itemrecebido.UfParlamentar);
+                        _politico.Estado = (EstadoEnum)Enum.Parse(typeof(EstadoEnum), itemrecebido.UfParlamentar);
 
                         _politicoService.AddNewPolitico(_mapper.Map<Politico>(_politico));
 

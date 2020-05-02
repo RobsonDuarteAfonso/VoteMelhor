@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VoteMelhor.ApplicationCore\VoteMelhor.ApplicationCore.csproj" />
+    <ProjectReference Include="..\VoteMelhor.Domain\VoteMelhor.Domain.csproj" />
     <ProjectReference Include="..\VoteMelhor.Infra\VoteMelhor.Infra.csproj" />
   </ItemGroup>
 

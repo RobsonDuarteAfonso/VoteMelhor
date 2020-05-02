@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using VoteMelhor.ApplicationCore.Entities;
+using VoteMelhor.Domain.Entities;
 using VoteMelhor.WebApi.ViewModels;
 
 namespace VoteMelhor.WebApi.AutoMapper

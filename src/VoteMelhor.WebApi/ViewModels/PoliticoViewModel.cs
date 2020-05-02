@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using VoteMelhor.ApplicationCore.Enumations;
+using VoteMelhor.Domain.Enumations;
 
 namespace VoteMelhor.WebApi.ViewModels
 {
@@ -7,7 +7,7 @@ namespace VoteMelhor.WebApi.ViewModels
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public Estado Estado { get; set; }
+        public EstadoEnum Estado { get; set; }
         public string Imagem { get; set; }
         public ICollection<PoliticoPartidoViewModel> PoliticoPartidos { get; set; }
         public ICollection<ClassificacaoViewModel> Classificacoes { get; set; }

@@ -21,7 +21,7 @@ namespace VoteMelhor.Infra.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Cargo", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Cargo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Cargos");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Classificacao", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Classificacao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Classificacoes");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Partido", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Partido", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +104,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Partidos");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Politico", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Politico", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -129,7 +129,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Politicos");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.PoliticoPartido", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.PoliticoPartido", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +153,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("PoliticoPartidos");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Processo", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Processo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -190,7 +190,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Processos");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Proposta", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Proposta", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -229,7 +229,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Propostas");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Usuario", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -271,7 +271,7 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Votacao", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Votacao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -300,63 +300,63 @@ namespace VoteMelhor.Infra.Migrations
                     b.ToTable("Votacoes");
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Cargo", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Cargo", b =>
                 {
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Politico", "Politico")
+                    b.HasOne("VoteMelhor.Domain.Entities.Politico", "Politico")
                         .WithMany("Cargos")
                         .HasForeignKey("PoliticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Classificacao", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Classificacao", b =>
                 {
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Politico", "Politico")
+                    b.HasOne("VoteMelhor.Domain.Entities.Politico", "Politico")
                         .WithMany("Classificacoes")
                         .HasForeignKey("PoliticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Usuario", "Usuario")
+                    b.HasOne("VoteMelhor.Domain.Entities.Usuario", "Usuario")
                         .WithMany("Classificacoes")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.PoliticoPartido", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.PoliticoPartido", b =>
                 {
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Partido", "Partido")
+                    b.HasOne("VoteMelhor.Domain.Entities.Partido", "Partido")
                         .WithMany("PoliticoPartidos")
                         .HasForeignKey("PartidoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Politico", "Politico")
+                    b.HasOne("VoteMelhor.Domain.Entities.Politico", "Politico")
                         .WithMany("PoliticoPartidos")
                         .HasForeignKey("PoliticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Processo", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Processo", b =>
                 {
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Politico", "Politico")
+                    b.HasOne("VoteMelhor.Domain.Entities.Politico", "Politico")
                         .WithMany("Processos")
                         .HasForeignKey("PoliticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VoteMelhor.ApplicationCore.Entities.Votacao", b =>
+            modelBuilder.Entity("VoteMelhor.Domain.Entities.Votacao", b =>
                 {
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Politico", "Politico")
+                    b.HasOne("VoteMelhor.Domain.Entities.Politico", "Politico")
                         .WithMany("Votacoes")
                         .HasForeignKey("PoliticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VoteMelhor.ApplicationCore.Entities.Proposta", "Proposta")
+                    b.HasOne("VoteMelhor.Domain.Entities.Proposta", "Proposta")
                         .WithMany()
                         .HasForeignKey("PropostaId")
                         .OnDelete(DeleteBehavior.Cascade)

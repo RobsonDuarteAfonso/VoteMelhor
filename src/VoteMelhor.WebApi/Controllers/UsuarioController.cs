@@ -3,12 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using VoteMelhor.ApplicationCore.Entities;
-using VoteMelhor.ApplicationCore.Enumations;
-using VoteMelhor.ApplicationCore.Interfaces.Services;
+using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Enumations;
+using VoteMelhor.Domain.Interfaces.Services;
 using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.Util;
-using VoteMelhor.WebApi.Validations;
 
 namespace VoteMelhor.WebApi.Controllers
 {
@@ -18,13 +17,11 @@ namespace VoteMelhor.WebApi.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly TokenService _tokenService;
-        private readonly CreateUsuarioValidation _createUsuarioValidation;
 
-        public UsuarioController(IUsuarioService usuarioService, TokenService tokenService, CreateUsuarioValidation createUsuarioValidation)
+        public UsuarioController(IUsuarioService usuarioService, TokenService tokenService)
         {
             _usuarioService = usuarioService;
             _tokenService = tokenService;
-            _createUsuarioValidation = createUsuarioValidation;
         }
 
         [HttpPost]
@@ -66,7 +63,7 @@ namespace VoteMelhor.WebApi.Controllers
 
         [HttpGet]
         [Route("usuario")]
-        [AuthorizeEnum(Perfil.USR, Perfil.ADM, Perfil.EDT)]
+        [AuthorizeEnum(PerfilEnum.USR, PerfilEnum.ADM, PerfilEnum.EDT)]
         public string Usuario() => "Usuário";
 
         /// <summary>
@@ -81,17 +78,15 @@ namespace VoteMelhor.WebApi.Controllers
         {
             try
             {
-                ValidationResult result = _createUsuarioValidation.Validate(model);
-
-                if (result.IsValid)
-                {
+/*                 if (model)
+                { */
                     _usuarioService.Add(model);
                     return Ok(model);
-                } 
+/*                 } 
                 else
                 {
                     return BadRequest(result.Errors);                
-                }
+                } */
             }
             catch(Exception ex)
             {

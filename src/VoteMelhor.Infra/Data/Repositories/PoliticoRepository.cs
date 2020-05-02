@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using VoteMelhor.ApplicationCore.Entities;
-using VoteMelhor.ApplicationCore.Interfaces.Repositories;
+using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Interfaces.Repositories;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -28,6 +28,7 @@ namespace VoteMelhor.Infra.Data.Repositories
             catch (Exception ex)
             {
                 transaction.Rollback();
+                throw new Exception(ex.Message);
             }
         }
 

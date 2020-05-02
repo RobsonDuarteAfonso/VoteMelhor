@@ -1,5 +1,5 @@
 ﻿using System;
-using VoteMelhor.ApplicationCore.Enumations;
+using VoteMelhor.Domain.Enumations;
 
 namespace VoteMelhor.WebApi.ViewModels
 {
@@ -10,7 +10,7 @@ namespace VoteMelhor.WebApi.ViewModels
         public string Detalhe { get; set; }
         public DateTime DtPublicacao { get; set; }
         public DateTime DtAtualizacao { get; set; }
-        public Situacao Situacao { get; set; }
+        public SituacaoEnum Situacao { get; set; }
         public PoliticoViewModel Politico { get; set; }
     }
 }

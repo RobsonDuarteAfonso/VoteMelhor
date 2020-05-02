@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using VoteMelhor.ApplicationCore.Entities;
+using VoteMelhor.Domain.Entities;
 
 namespace VoteMelhor.Infra.Data.Mappings
 {

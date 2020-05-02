@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2- Domain", "2- Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3- Infra", "3- Infra", "{B5078A68-A75A-4EFB-AD82-2A06152A60D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteMelhor.ApplicationCore", "src\VoteMelhor.ApplicationCore\VoteMelhor.ApplicationCore.csproj", "{41F01860-0392-4A68-8D0A-9DAB7D63C788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteMelhor.Domain", "src\VoteMelhor.Domain\VoteMelhor.Domain.csproj", "{41F01860-0392-4A68-8D0A-9DAB7D63C788}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteMelhor.Infra", "src\VoteMelhor.Infra\VoteMelhor.Infra.csproj", "{8937F992-45E1-4015-9B3D-E97B3F2C85C4}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VoteMelhor.ApplicationCore.Entities;
+using VoteMelhor.Domain.Entities;
 using VoteMelhor.Infra.Data.Mappings;
 
 namespace VoteMelhor.Infra.Data

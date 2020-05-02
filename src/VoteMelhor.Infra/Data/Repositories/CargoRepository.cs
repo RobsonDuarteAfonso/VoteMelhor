@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using VoteMelhor.ApplicationCore.Entities;
-using VoteMelhor.ApplicationCore.Interfaces.Repositories;
+using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Interfaces.Repositories;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
