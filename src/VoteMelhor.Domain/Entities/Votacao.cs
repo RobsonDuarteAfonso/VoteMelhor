@@ -12,9 +12,8 @@ namespace VoteMelhor.Domain.Entities
         public virtual Proposta Proposta { get;  private set; }
         public virtual Politico Politico { get; private set; }
 
-        public Votacao(Guid id, VotoEnum voto, DateTime dtvotacao, int politicoid, Guid propostaid)
+        public Votacao(VotoEnum voto, DateTime dtvotacao, int politicoid, Guid propostaid)
         {
-            Id = id;
             Voto = voto;
             DtVotacao = dtvotacao;
             PoliticoId = politicoid;
@@ -25,6 +24,16 @@ namespace VoteMelhor.Domain.Entities
         public Votacao()
         {
 
+        }
+
+        public void SetVoto(VotoEnum voto)
+        {
+            Voto = voto;
+        }
+
+        public void SetDataVotacao(DateTime dtVotacao)
+        {
+            DtVotacao = dtVotacao;
         }
     }
 }

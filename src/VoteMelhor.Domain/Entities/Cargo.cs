@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VoteMelhor.Domain.Entities
+﻿namespace VoteMelhor.Domain.Entities
 {
     public class Cargo : Entity
     {
@@ -10,12 +8,21 @@ namespace VoteMelhor.Domain.Entities
         public virtual Politico Politico { get; private set; }
 
 
-        public Cargo(Guid id, string nome, int atual, int politicoid)
+        public Cargo(string nome, int politicoid)
         {
-            Id = id;
             Nome = nome;
-            Atual = atual;
+            Atual = 1;
             PoliticoId = politicoid;
+        }
+
+        public void MarqueAtual()
+        {
+            Atual = 1;
+        }
+
+        public void DesmarqueAtual()
+        {
+            Atual = 0;
         }
 
         // Empty constructor for EF

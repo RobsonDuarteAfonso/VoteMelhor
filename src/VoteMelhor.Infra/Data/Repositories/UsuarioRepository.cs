@@ -14,10 +14,12 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         public Usuario AutenticarUsuario(Usuario usuario)
         {
+/*             var user = (from x in Db.Usuarios
+                        where x.Email == usuario.Email && x.Senha == usuario.Senha
+                        select new Usuario(x.Id, x.Nome, x.Email, x.Status, x.Perfil, x.Classificacoes)).SingleOrDefault(); */
             var user = (from x in Db.Usuarios
                         where x.Email == usuario.Email && x.Senha == usuario.Senha
-                        select new Usuario(x.Id, x.Nome, x.Email, x.Status, x.Perfil, x.Classificacoes)).SingleOrDefault();
-
+                        select new Usuario(x.Nome, x.Email, x.Senha, x.Estado)).SingleOrDefault();
             return user;
         }
 

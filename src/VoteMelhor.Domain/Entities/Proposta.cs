@@ -12,9 +12,8 @@ namespace VoteMelhor.Domain.Entities
         public string Descricao { get; private set; }
         public DateTime DtProposta { get; private set; }        
 
-        public Proposta(Guid id, CasaLegislativaEnum casalegislativa, TipoPropostaEnum tipoproposta, string numeracao, string resumo, string descricao, DateTime dtproposta)
+        public Proposta(CasaLegislativaEnum casalegislativa, TipoPropostaEnum tipoproposta, string numeracao, string resumo, string descricao, DateTime dtproposta)
         {
-            Id = id;
             CasaLegislativa = casalegislativa;
             TipoProposta = tipoproposta;
             Numeracao = numeracao;
@@ -24,9 +23,39 @@ namespace VoteMelhor.Domain.Entities
         }
 
         // Empty constructor for EF
-        public Proposta()
+        protected Proposta()
         {
 
+        }
+
+        public void SetCasaLegislativa(CasaLegislativaEnum casalegislativa)
+        {
+            CasaLegislativa = casalegislativa;
+        }
+
+        public void SetTipoProposta( TipoPropostaEnum tipoProposta)
+        {
+            TipoProposta = tipoProposta;
+        }
+
+        public void SetNumeracao(string numeracao)
+        {
+            Numeracao = numeracao;
+        }
+
+        public void SetResumo(string resumo)
+        {
+            Resumo = resumo;
+        }
+
+        public void SetDescricao(string descricao)
+        {
+            Descricao = descricao;
+        }
+
+        public void SetDataProposta(DateTime dtProposta)
+        {
+            DtProposta = dtProposta;
         }
     }
 }

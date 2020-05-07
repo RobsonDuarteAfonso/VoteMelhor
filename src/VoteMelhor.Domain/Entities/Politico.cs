@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VoteMelhor.Domain.Enumations;
 
 namespace VoteMelhor.Domain.Entities
@@ -12,7 +11,7 @@ namespace VoteMelhor.Domain.Entities
         public string Imagem { get; private set; }
         public virtual ICollection<PoliticoPartido> PoliticoPartidos { get; private set; }
         public virtual ICollection<Classificacao> Classificacoes { get; private set; }
-        public virtual ICollection<Processo> Processos  { get; private set; }
+        public virtual ICollection<Processo> Processos { get; private set; }
         public virtual ICollection<Votacao> Votacoes { get; private set; }
         public virtual ICollection<Cargo> Cargos { get; private set; }
 
@@ -25,7 +24,25 @@ namespace VoteMelhor.Domain.Entities
         }
 
         // Empty constructor for EF
-        protected Politico() { }
+        protected Politico()
+        {
+
+        }
+
+        public void SetNome(string nome)
+        {
+            Nome = nome;
+        }
+
+        public void SetEstado(EstadoEnum estado)
+        {
+            Estado = estado;
+        }
+
+        public void SetImagem(string imagem)
+        {
+            Imagem = imagem;
+        }        
 
     }
 }

@@ -8,13 +8,11 @@ namespace VoteMelhor.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Classificacao> builder)
         {
+            builder.ToTable("Classificacao");
+            
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Rate)
-                .HasColumnType("varchar(3)")
-                .HasMaxLength(3);
-
-            builder.Property(c => c.RatePublico)
                 .HasColumnType("varchar(3)")
                 .HasMaxLength(3);
 

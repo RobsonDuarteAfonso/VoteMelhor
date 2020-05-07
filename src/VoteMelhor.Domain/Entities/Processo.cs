@@ -13,20 +13,36 @@ namespace VoteMelhor.Domain.Entities
         public int PoliticoId { get; private set; }
         public virtual Politico Politico { get; private set; }
 
-        public Processo(Guid id, string resumo, string detalhe, DateTime dtpublicacao, SituacaoEnum situacao, int politicoid)
+        public Processo(string resumo, string detalhe, SituacaoEnum situacao, int politicoid)
         {
-            Id = id;
             Resumo = resumo;
             Detalhe = detalhe;
-            DtPublicacao = dtpublicacao;
             Situacao = situacao;
             PoliticoId = politicoid;
         }
 
         // Empty constructor for EF
-        public Processo()
+        protected Processo()
         {
 
+        }
+
+        public void SetResumo(string resumo)
+        {
+            Resumo = resumo;
+        }
+        public void SetDetalhe(string detalhe)
+        {
+            Detalhe = detalhe;
+        }
+        public void AlteraSituacao(SituacaoEnum situacao) 
+        {
+            Situacao = situacao;
+            DtAtualizacao = DateTime.Now;
+        }
+        public void SetDataPublicacao()
+        {
+            DtPublicacao = DateTime.Now;
         }
     }
 }

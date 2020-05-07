@@ -1,11 +1,9 @@
-﻿using FluentValidation.Results;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Enumations;
-using VoteMelhor.Domain.Interfaces.Services;
 using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.Util;
 
@@ -15,12 +13,11 @@ namespace VoteMelhor.WebApi.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
         private readonly TokenService _tokenService;
 
-        public UsuarioController(IUsuarioService usuarioService, TokenService tokenService)
+        public UsuarioController(TokenService tokenService)
         {
-            _usuarioService = usuarioService;
+            // _usuarioService = usuarioService;
             _tokenService = tokenService;
         }
 
@@ -30,7 +27,7 @@ namespace VoteMelhor.WebApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody]Usuario model)
         {
-            try
+/*             try
             {
                 var usuario = _usuarioService.AutenticarUsuario(model);
 
@@ -47,7 +44,8 @@ namespace VoteMelhor.WebApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"Erro: {ex.Message}");
-            }
+            } */
+            return Ok();
 
         }
 
@@ -76,22 +74,23 @@ namespace VoteMelhor.WebApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Post(Usuario model)
         {
-            try
+/*            try
             {
-/*                 if (model)
-                { */
+                 if (model)
+                {
                     _usuarioService.Add(model);
                     return Ok(model);
-/*                 } 
+                } 
                 else
                 {
                     return BadRequest(result.Errors);                
-                } */
+                } 
             }
             catch(Exception ex)
             {
                 return BadRequest($"Erro: {ex.Message}");
-            }
+            }*/
+            return Ok();
         }
 
     }

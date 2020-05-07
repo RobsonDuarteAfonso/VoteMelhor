@@ -18,7 +18,7 @@ namespace VoteMelhor.Infra.Data.Repositories
             return DbSet.FirstOrDefault(c => c.PoliticoId == politicoId && c.PartidoId == partidoId);
         }
 
-        public void SetAtual(int politicoId, int valor)
+/*         public void SetAtual(int politicoId, int valor)
         {
             var politicos = DbSet.Where(c => c.PoliticoId == politicoId);
 
@@ -28,6 +28,6 @@ namespace VoteMelhor.Infra.Data.Repositories
                 Db.Update(politicoPartido);
                 Db.SaveChanges();
             }
-        }
+        } */
     }
 }

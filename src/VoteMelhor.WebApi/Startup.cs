@@ -10,8 +10,6 @@ using Newtonsoft.Json.Converters;
 using System.IO;
 using System.Text;
 using VoteMelhor.Domain.Interfaces.Repositories;
-using VoteMelhor.Domain.Interfaces.Services;
-using VoteMelhor.Domain.Services;
 using VoteMelhor.Infra.Data;
 using VoteMelhor.Infra.Data.Repositories;
 using VoteMelhor.WebApi.AutoMapper;
@@ -52,11 +50,11 @@ namespace VoteMelhor.WebApi
             services.AddScoped<TokenService>();
 
             // Application
-            services.AddTransient<IUsuarioService, UsuarioService>();
+/*             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<IPoliticoService, PoliticoService>();
             services.AddTransient<IPartidoService, PartidoService>();
             services.AddTransient<ICargoService, CargoService>();
-            services.AddTransient<IPoliticoPartidoService, PoliticoPartidoService>();
+            services.AddTransient<IPoliticoPartidoService, PoliticoPartidoService>(); */
 
             // Infra - Data
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();

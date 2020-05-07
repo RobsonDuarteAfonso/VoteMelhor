@@ -10,16 +10,25 @@ namespace VoteMelhor.Domain.Entities
         public virtual Politico Politico { get; private set; }
         public virtual Partido Partido { get; private set; }
 
-        public PoliticoPartido(Guid id, int atual, int politicoid, Guid partidoid)
+        public PoliticoPartido(int atual, int politicoid, Guid partidoid)
         {
-            Id = id;
             Atual = atual;
             PoliticoId = politicoid;
             PartidoId = partidoid;
         }
 
+        public void MarqueAtual()
+        {
+            Atual = 1;
+        }
+
+        public void DesmarqueAtual()
+        {
+            Atual = 0;
+        }
+
         // Empty constructor for EF
-        public PoliticoPartido()
+        protected PoliticoPartido()
         {
 
         }

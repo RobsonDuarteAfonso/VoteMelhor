@@ -11,6 +11,8 @@ namespace VoteMelhor.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Politico> builder)
         {
+            builder.ToTable("Politico");
+
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedNever();
 

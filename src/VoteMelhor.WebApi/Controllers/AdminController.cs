@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Enumations;
-using VoteMelhor.Domain.Interfaces.Services;
 using VoteMelhor.WebApi.Raws;
 using VoteMelhor.WebApi.Services;
 using VoteMelhor.WebApi.ViewModels;
@@ -21,23 +20,23 @@ namespace VoteMelhor.WebApi.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly IPoliticoPartidoService _politicoPartidoService;
+/*         private readonly IPoliticoPartidoService _politicoPartidoService;
         private readonly IPoliticoService _politicoService;
         private readonly IPartidoService _partidoService;
-        private readonly ICargoService _cargoService;
+        private readonly ICargoService _cargoService; */
         private readonly IMapper _mapper;
 
         public AdminController(
-            IPoliticoPartidoService politicoPartidoService,
+/*             IPoliticoPartidoService politicoPartidoService,
             IPartidoService partidoService,
             IPoliticoService politicoService,
-            ICargoService cargoService,
+            ICargoService cargoService, */
             IMapper mapper)
         {
-            _politicoPartidoService = politicoPartidoService;
+/*             _politicoPartidoService = politicoPartidoService;
             _politicoService = politicoService;
             _partidoService = partidoService;
-            _cargoService = cargoService;
+            _cargoService = cargoService; */
             _mapper = mapper;
         }
 
@@ -47,7 +46,7 @@ namespace VoteMelhor.WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> AddSenadores()
         {
-                try
+/*                 try
                 {
 
                 var senadoFederalService = new SenadoFederalService();
@@ -83,7 +82,7 @@ namespace VoteMelhor.WebApi.Controllers
 
                         if (_politicoPartido == null)
                         {
-                            _politicoPartidoService.SetAtual(_politico.Id, 0);
+                            //_politicoPartidoService.SetAtual(_politico.Id, 0);
 
                             _politicoPartido.Atual = 1;
                             _politicoPartido.Partido = _partido;
@@ -96,7 +95,7 @@ namespace VoteMelhor.WebApi.Controllers
                             if (_politicoPartido.Atual != 1)
                             {
                                 _politicoPartido.Atual = 1;
-                                _politicoPartidoService.SetAtual(_politico.Id, 0);
+                                //_politicoPartidoService.SetAtual(_politico.Id, 0);
                                 _politicoPartidoService.Update(_mapper.Map<PoliticoPartido>(_politicoPartido));
                             }
                         }
@@ -136,9 +135,9 @@ namespace VoteMelhor.WebApi.Controllers
                 catch (Exception ex)
                 {
                     return BadRequest($"Erro: {ex.Message}");
-                }
+                } */
 
-                
+                return Ok();
         }
 
         [HttpGet]
@@ -147,7 +146,7 @@ namespace VoteMelhor.WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> AddAllPartidos()
         {
-            try
+/*             try
             {
                 var webClient = new WebClient();
                 var json = webClient.DownloadString("./Extra/partidos.json");
@@ -181,7 +180,8 @@ namespace VoteMelhor.WebApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"Erro: {ex.Message}");
-            }            
+            }      */     
+            return Ok();  
         }
     }
 }

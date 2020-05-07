@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VoteMelhor.Domain.Entities;
-using VoteMelhor.Domain.Interfaces.Services;
 using VoteMelhor.WebApi.Services;
 
 namespace VoteMelhor.WebApi.Controllers

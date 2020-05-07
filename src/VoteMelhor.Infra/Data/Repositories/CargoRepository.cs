@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
 
@@ -17,15 +18,34 @@ namespace VoteMelhor.Infra.Data.Repositories
             return DbSet.FirstOrDefault(x => x.PoliticoId == cargo.PoliticoId && x.Nome == cargo.Nome);
         }
 
-        public void SetAtual(int politicoId, int valor)
+        public void UpdateAtual(Guid id, int politicoId)
         {
-            var cargos = DbSet.Where(c => c.PoliticoId == politicoId);
-
-            foreach (var item in cargos)
+            using var transaction = Db.Database.BeginTransaction();            
+            try
             {
-                var cargo = new Cargo(item.Id, item.Nome, valor, item.PoliticoId);
-                Db.Update(cargo);
-                Db.SaveChanges();
+                var cargos = DbSet.Where(c => c.PoliticoId == politicoId);
+
+                foreach (var item in cargos)
+                {
+                    if(item.Id == id)
+                    {
+                        item.MarqueAtual();
+                    }
+                    else
+                    {
+                        item.DesmarqueAtual();
+                    }
+
+                    Db.Update(item);
+                    Db.SaveChanges();
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw new Exception(ex.Message);
             }
         }
     }

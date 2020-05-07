@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using VoteMelhor.Domain.Enumations;
+using VoteMelhor.Domain.ValueObjects;
 
 namespace VoteMelhor.Domain.Entities
 {
@@ -10,74 +8,68 @@ namespace VoteMelhor.Domain.Entities
     {
         public string Nome { get; private set; }
         public string Email { get; private set; }
-        public string Senha { get; private set; }
-        public string Facebook { get; private set; }
-        public int Status { get; private set; }
-        public string CodigoConfirmacao { get; private set; }
+        public Senha Senha { get; private set; }
+        public StatusUsuarioEnum StatusUsuario { get; private set; }
+        public CodigoConfirmacao CodigoConfirmacao { get; private set; }
         public PerfilEnum Perfil { get; private set; }
+        public EstadoEnum Estado { get; private set; }
         public virtual ICollection<Classificacao> Classificacoes { get; private set; }
 
 
-        public Usuario(Guid id, string nome, string email, string senha, string facebook, int status, string codigoConfirmacao, PerfilEnum perfil)
+        public Usuario(string nome, string email, string senha, EstadoEnum estado)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = new Senha(senha);
+            Perfil = PerfilEnum.USR;
+            StatusUsuario = StatusUsuarioEnum.CAD;
+            CodigoConfirmacao = new CodigoConfirmacao();
+            Estado = estado;
+        }
+
+
+        // [JsonConstructor]
+/*         public Usuario(Guid id, string nome, string email, string senha, int status, CodigoConfirmacao codigoConfirmacao, PerfilEnum perfil, ICollection<Classificacao> classificacoes)
         {
             Id = id;
             Nome = nome;
             Email = email;
             Senha = senha;
-            Facebook = facebook;
             Perfil = perfil;
-            Status = status;
-            CodigoConfirmacao = codigoConfirmacao;
-        }
-
-
-        [JsonConstructor]
-        public Usuario(Guid id, string nome, string email, string senha, string facebook, int status, string codigoConfirmacao, PerfilEnum perfil, ICollection<Classificacao> classificacoes)
-        {
-            Id = id;
-            Nome = nome;
-            Email = email;
-            Senha = senha;
-            Facebook = facebook;
-            Perfil = perfil;
-            Status = status;
+            StatusUsuario = StatusUsuarioEnum.CAD;
             Classificacoes = classificacoes;
-            if (Id == Guid.Empty)
-            {
-                CodigoConfirmacao = GerarCodigoConfirmacao(70);
-            } 
-            else
-            {
-                CodigoConfirmacao = codigoConfirmacao;
-            }            
-            
-        }
-
-        public Usuario(Guid id, string nome, string email, int status, PerfilEnum perfil, ICollection<Classificacao> classificacoes)
-        {
-            Id = id;
-            Nome = nome;
-            Email = email;
-            Perfil = perfil;
-            Classificacoes = classificacoes;
-            Status = status;
-        }
+            CodigoConfirmacao = codigoConfirmacao;            
+        } */
 
         // Empty constructor for EF
         protected Usuario()
         {
 
+        }        
+        
+        public void SetPerfil(PerfilEnum perfil)
+        {
+            Perfil = perfil;
         }
 
-        public static string GerarCodigoConfirmacao(int tamanho)
+        public void SetStatus(StatusUsuarioEnum status)
         {
-            var chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
-            var random = new Random();
-            var result = new string(
-                Enumerable.Repeat(chars, tamanho)
-                          .Select(s => s[random.Next(s.Length)])
-                          .ToArray());
-            return result;
+            StatusUsuario = status;
+        }
+
+        public CodigoConfirmacao GerarNovoCodigo()
+        {
+            return new CodigoConfirmacao();
+        }
+
+        public void SetNome(string nome)
+        {
+            Nome = nome;
+        }
+
+        public void SetEstado(EstadoEnum estado)
+        {
+            Estado = estado;
         }
     }
 }

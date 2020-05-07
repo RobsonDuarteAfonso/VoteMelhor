@@ -11,9 +11,8 @@ namespace VoteMelhor.Domain.Entities
         public string Imagem { get; private set; }
         public virtual ICollection<PoliticoPartido> PoliticoPartidos { get; private set; }
 
-        public Partido(Guid id, string nome, string sigla, int numero, string imagem)
+        public Partido(string nome, string sigla, int numero, string imagem)
         {
-            Id = id;
             Nome = nome;
             Sigla = sigla;
             Numero = numero;
@@ -21,9 +20,29 @@ namespace VoteMelhor.Domain.Entities
         }
 
         // Empty constructor for EF
-        public Partido()
+        protected Partido()
         {
 
         }
+
+        public void SetNome(string nome)
+        {
+            Nome = nome;
+        }
+
+        public void SetSigla(string sigla)
+        {
+            Sigla = sigla;
+        }
+
+        public void SetImagem(string imagem)
+        {
+            Imagem = imagem;
+        }
+
+        public void SetNumero(int numero)
+        {
+            Numero = numero;
+        }        
     }
 }

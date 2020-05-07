@@ -8,6 +8,8 @@ namespace VoteMelhor.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<PoliticoPartido> builder)
         {
+            builder.ToTable("PoliticoPartido");
+
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Atual)
