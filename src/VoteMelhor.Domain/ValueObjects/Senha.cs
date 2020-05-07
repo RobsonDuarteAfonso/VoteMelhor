@@ -42,5 +42,10 @@ namespace VoteMelhor.Domain.ValueObjects
             return false;
 
         }
+
+        public void SetSenhaNull()
+        {
+            Codigo = null;
+        }
     }
 }
