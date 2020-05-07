@@ -17,7 +17,7 @@ namespace VoteMelhor.WebApi.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(Usuario usuario)
+        public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration.GetValue<string>("SettingsKey:Secret"));
@@ -25,9 +25,9 @@ namespace VoteMelhor.WebApi.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Nome.ToString()),
-                    new Claim(ClaimTypes.Role, usuario.Perfil.ToString()),
-                    new Claim(ClaimTypes.Email, usuario.Email.ToString())
+                    new Claim(ClaimTypes.Name, user.Name.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

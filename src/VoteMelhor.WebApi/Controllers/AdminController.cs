@@ -12,7 +12,7 @@ using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Enumations;
 using VoteMelhor.WebApi.Raws;
 using VoteMelhor.WebApi.Services;
-using VoteMelhor.WebApi.ViewModels;
+
 
 namespace VoteMelhor.WebApi.Controllers
 {
@@ -23,21 +23,22 @@ namespace VoteMelhor.WebApi.Controllers
 /*         private readonly IPoliticoPartidoService _politicoPartidoService;
         private readonly IPoliticoService _politicoService;
         private readonly IPartidoService _partidoService;
-        private readonly ICargoService _cargoService; */
-        private readonly IMapper _mapper;
+        private readonly ICargoService _cargoService; 
+        private readonly IMapper _mapper;*/
 
         public AdminController(
 /*             IPoliticoPartidoService politicoPartidoService,
             IPartidoService partidoService,
             IPoliticoService politicoService,
-            ICargoService cargoService, */
-            IMapper mapper)
+            ICargoService cargoService, 
+            IMapper mapper*/
+            )
         {
 /*             _politicoPartidoService = politicoPartidoService;
             _politicoService = politicoService;
             _partidoService = partidoService;
-            _cargoService = cargoService; */
-            _mapper = mapper;
+            _cargoService = cargoService; 
+            _mapper = mapper;*/
         }
 
         [HttpGet]

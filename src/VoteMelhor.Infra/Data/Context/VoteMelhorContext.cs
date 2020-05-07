@@ -13,28 +13,28 @@ namespace VoteMelhor.Infra.Data
 
         }
 
-        public DbSet<Cargo> Cargos { get; set; }
-        public DbSet<Classificacao> Classificacoes { get; set; }
-        public DbSet<Partido> Partidos { get; set; }
-        public DbSet<Politico> Politicos { get; set; }
-        public DbSet<PoliticoPartido> PoliticoPartidos { get; set; }
-        public DbSet<Processo> Processos { get; set; }
-        public DbSet<Proposta> Propostas { get; set; }
-        public DbSet<Votacao> Votacoes { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Party> Partys { get; set; }
+        public DbSet<Political> Politicals { get; set; }
+        public DbSet<PoliticalParty> PoliticalPartys { get; set; }
+        public DbSet<LawSuit> LawSuits { get; set; }
+        public DbSet<Proposal> Proposals { get; set; }
+        public DbSet<Voting> Votings { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CargoMap());
-            modelBuilder.ApplyConfiguration(new ClassificacaoMap());
-            modelBuilder.ApplyConfiguration(new PartidoMap());
-            modelBuilder.ApplyConfiguration(new PoliticoMap());
-            modelBuilder.ApplyConfiguration(new PoliticoPartidoMap());
-            modelBuilder.ApplyConfiguration(new ProcessoMap());
-            modelBuilder.ApplyConfiguration(new PropostaMap());
-            modelBuilder.ApplyConfiguration(new VotacaoMap());
-            modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new PositionMap());
+            modelBuilder.ApplyConfiguration(new RatingMap());
+            modelBuilder.ApplyConfiguration(new PartyMap());
+            modelBuilder.ApplyConfiguration(new PoliticalMap());
+            modelBuilder.ApplyConfiguration(new PoliticalPartyMap());
+            modelBuilder.ApplyConfiguration(new LawSuitMap());
+            modelBuilder.ApplyConfiguration(new ProposalMap());
+            modelBuilder.ApplyConfiguration(new VotingMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
 
             base.OnModelCreating(modelBuilder);
         }

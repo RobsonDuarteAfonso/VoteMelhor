@@ -25,7 +25,7 @@ namespace VoteMelhor.WebApi.Controllers
         [Route("login")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody]Usuario model)
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody]User model)
         {
 /*             try
             {
@@ -61,18 +61,13 @@ namespace VoteMelhor.WebApi.Controllers
 
         [HttpGet]
         [Route("usuario")]
-        [AuthorizeEnum(PerfilEnum.USR, PerfilEnum.ADM, PerfilEnum.EDT)]
+        // [AuthorizeEnum(PerfilEnum.USR, PerfilEnum.ADM, PerfilEnum.EDT)]
         public string Usuario() => "Usuário";
 
-        /// <summary>
-        /// Cadastrar Novo Usuário
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route("create")]
         [AllowAnonymous]
-        public async Task<IActionResult> Post(Usuario model)
+        public async Task<IActionResult> Post(User model)
         {
 /*            try
             {

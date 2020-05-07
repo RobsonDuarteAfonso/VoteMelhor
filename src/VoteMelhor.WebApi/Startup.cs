@@ -57,18 +57,18 @@ namespace VoteMelhor.WebApi
             services.AddTransient<IPoliticoPartidoService, PoliticoPartidoService>(); */
 
             // Infra - Data
-            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            services.AddTransient<IPoliticoRepository, PoliticoRepository>();
-            services.AddTransient<IPartidoRepository, PartidoRepository>();
-            services.AddTransient<ICargoRepository, CargoRepository>();
-            services.AddTransient<IPoliticoPartidoRepository, PoliticoPartidoRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPoliticalRepository, PoliticalRepository>();
+            services.AddTransient<IPartyRepository, PartyRepository>();
+            services.AddTransient<IPositionRepository, PositionRepository>();
+            services.AddTransient<IPoliticalPartyRepository, PoliticalPartyRepository>();
             services.AddTransient<VoteMelhorContext>();
 
             //Validations
             //services.AddScoped<CreateUsuarioValidation>();
 
             // AutoMapper Settings
-            services.AddAutoMapperSetup();
+            // services.AddAutoMapperSetup();
 
 
             // ASP.NET HttpContext dependency

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using VoteMelhor.Domain.Entities;
-using VoteMelhor.WebApi.ViewModels;
+/* using VoteMelhor.Domain.Entities;
+using VoteMelhor.WebApi.ViewModels; */
 
 namespace VoteMelhor.WebApi.AutoMapper
 {
@@ -8,7 +8,7 @@ namespace VoteMelhor.WebApi.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<CargoViewModel, Cargo>()
+/*             CreateMap<CargoViewModel, Cargo>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.Nome))
                 .ForMember(dest => dest.Atual, opt => opt.MapFrom(src => src.Atual))
@@ -94,7 +94,7 @@ namespace VoteMelhor.WebApi.AutoMapper
                 .ForMember(dest => dest.Proposta, opt => opt.MapFrom(src => src.Proposta))
                 .ForMember(dest => dest.PropostaId, dest => dest.Ignore())
                 .ForMember(dest => dest.PoliticoId, dest => dest.Ignore())
-                .ReverseMap();
+                .ReverseMap(); */
         }
     }
 }

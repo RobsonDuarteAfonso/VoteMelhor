@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using VoteMelhor.Domain.Entities;
-using VoteMelhor.WebApi.ViewModels;
+/* using VoteMelhor.Domain.Entities;
+using VoteMelhor.WebApi.ViewModels; */
 
 namespace VoteMelhor.WebApi.AutoMapper
 {
@@ -8,7 +8,7 @@ namespace VoteMelhor.WebApi.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Cargo, CargoViewModel>();
+            // CreateMap<Cargo, CargoViewModel>();
         }
     }
 }
