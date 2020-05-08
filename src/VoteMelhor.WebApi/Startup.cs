@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using System.IO;
 using System.Text;
+using VoteMelhor.Domain.Handlers;
 using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.Infra.Data;
 using VoteMelhor.Infra.Data.Repositories;
@@ -39,22 +40,28 @@ namespace VoteMelhor.WebApi
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors();
+
             services.AddControllers()
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddMvc().AddNewtonsoftJson(opt => {
-                opt.SerializerSettings.Converters.Add(new StringEnumConverter());
-                });
+                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+            });
 
             //WebApi
             services.AddScoped<TokenService>();
 
             // Application
-/*             services.AddTransient<IUsuarioService, UsuarioService>();
-            services.AddTransient<IPoliticoService, PoliticoService>();
-            services.AddTransient<IPartidoService, PartidoService>();
-            services.AddTransient<ICargoService, CargoService>();
-            services.AddTransient<IPoliticoPartidoService, PoliticoPartidoService>(); */
+            services.AddTransient<LawSuitHandler, LawSuitHandler>();
+            services.AddTransient<PartyHandler, PartyHandler>();
+            //services.AddTransient<PoliticalPartyHandler, PoliticalPartyitHandler>();
+            services.AddTransient<PoliticalHandler, PoliticalHandler>();
+            services.AddTransient<PositionHandler, PositionHandler>();
+            //services.AddTransient<ProposalHandler, ProposalHandler>();
+            services.AddTransient<RatingHandler, RatingHandler>();
+            //services.AddTransient<UserHandler, UserHandler>();
+            //services.AddTransient<VotingHandler, VotingHandler>();
+
 
             // Infra - Data
             services.AddTransient<IUserRepository, UserRepository>();
@@ -77,6 +84,8 @@ namespace VoteMelhor.WebApi
             // .NET Native DI Abstraction
             //services.AddDependencyInjectionSetup();
 
+
+            //Config Autentication
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SettingsKey:Secret"));
 
             services.AddAuthentication(x =>

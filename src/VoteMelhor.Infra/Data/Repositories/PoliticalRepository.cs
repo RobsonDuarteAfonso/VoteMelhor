@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
+using VoteMelhor.Domain.Queries;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -32,9 +33,9 @@ namespace VoteMelhor.Infra.Data.Repositories
             }
         }
 
-        public Political VerifyExist(int id)
+        public Political VerifyExist(Political political)
         {
-            return DbSet.FirstOrDefault(c => c.Id == id);
+            return DbSet.FirstOrDefault(PoliticalQueries.VerifyExist(political));
         }
     }
 }

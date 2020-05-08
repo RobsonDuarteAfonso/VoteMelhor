@@ -1,5 +1,7 @@
-﻿using VoteMelhor.Domain.Entities;
+﻿using System.Linq;
+using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
+using VoteMelhor.Domain.Queries;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -9,6 +11,11 @@ namespace VoteMelhor.Infra.Data.Repositories
             : base(context)
         {
 
+        }
+
+        public Proposal VerifyExist(Proposal proposal)
+        {
+            return DbSet.FirstOrDefault(ProposalQueries.VerifyExist(proposal));
         }
     }
 }

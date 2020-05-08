@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
+using VoteMelhor.Domain.Queries;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -13,9 +13,9 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public PoliticalParty VerifyExist(int politicalId, Guid partyId)
+        public PoliticalParty VerifyExist(PoliticalParty politicalParty)
         {
-            return DbSet.FirstOrDefault(c => c.PoliticalId == politicalId && c.PartyId == partyId);
+            return DbSet.FirstOrDefault(PoliticalPartyQueries.VerifyExist(politicalParty));
         }
 
 /*         public void SetAtual(int politicalId, int valor)

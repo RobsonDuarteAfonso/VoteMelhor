@@ -2,6 +2,7 @@
 using System.Linq;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
+using VoteMelhor.Domain.Queries;
 
 namespace VoteMelhor.Infra.Data.Repositories
 {
@@ -15,7 +16,7 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         public Position VerifyExist(Position position)
         {
-            return DbSet.FirstOrDefault(x => x.PoliticalId == position.PoliticalId && x.Name == position.Name);
+            return DbSet.FirstOrDefault(PositionQueries.VerifyExist(position));
         }
 
         public void UpdateCurrent(Guid id, int politicalId)

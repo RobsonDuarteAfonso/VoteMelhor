@@ -31,18 +31,26 @@ namespace VoteMelhor.Domain.Entities
         {
             Summary = summary;
         }
+
         public void SetDescription(string description)
         {
             Description = description;
         }
-        public void UpdateSituation(SituationEnum situation) 
+
+        public void SetSituation(SituationEnum situation) 
         {
             Situation = situation;
-            UpdateDate = DateTime.Now;
         }
+        
         public void SetPublicationDate()
         {
             PublicationDate = DateTime.Now;
         }
+
+        public void SetUpdateDate()
+        {
+            UpdateDate = DateTime.Now;
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace VoteMelhor.Domain.Handlers
 
             if (command.Invalid)
             {
-                return new CommandResult(false, "Erro nas informações do Position.", command.Notifications);
+                return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
             }
 
             var position = new Position(command.Name, 1, command.PoliticalId);
@@ -36,11 +36,11 @@ namespace VoteMelhor.Domain.Handlers
             {
                 if (positionChecked != null)
                 {
-                    return new CommandResult(false, "Position já existe.", command);
+                    return new CommandResult(false, "Posição já existe.", command);
                 }
 
                 _repository.Add(position);
-                return new CommandResult(true, "Position adicionado com sucesso.", position);
+                return new CommandResult(true, "Posição adicionado com sucesso.", position);
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace VoteMelhor.Domain.Handlers
 
             if (command.Invalid)
             {
-                return new CommandResult(false, "Erro nas informações do Position.", command.Notifications);
+                return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
             }
 
             var position = _repository.GetById(command.Id);
@@ -63,13 +63,11 @@ namespace VoteMelhor.Domain.Handlers
             {
                 if (position == null)
                 {
-                    return new CommandResult(false, "Você está tentando alterar um Position que não existe.", command);
-
+                    return new CommandResult(false, "Você está tentando alterar uma posição que não existe.", command);
                 }
 
                 _repository.UpdateCurrent(command.Id, command.PoliticalId);
-                _repository.Add(position);
-                return new CommandResult(true, "Position adicionado com sucesso.", position);
+                return new CommandResult(true, "Posição adicionado com sucesso.", position);
             }
             catch (Exception ex)
             {

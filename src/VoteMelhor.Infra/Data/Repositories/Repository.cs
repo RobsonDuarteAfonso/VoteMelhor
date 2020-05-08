@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VoteMelhor.Domain.Interfaces.Repositories;
 
 namespace VoteMelhor.Infra.Data.Repositories
@@ -18,22 +17,10 @@ namespace VoteMelhor.Infra.Data.Repositories
             DbSet = Db.Set<TEntity>();
         }
 
-        public async virtual Task<TEntity> AddAsync(TEntity obj)
-        {
-            DbSet.Add(obj);
-            await Db.SaveChangesAsync();
-            return obj;
-        }
-
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
             SaveChanges();
-        }
-
-        public async virtual Task<TEntity> GetByIdAsync(Guid id)
-        {
-            return await DbSet.FindAsync(id);
         }
 
         public virtual TEntity GetById(Guid id)
@@ -41,14 +28,9 @@ namespace VoteMelhor.Infra.Data.Repositories
             return DbSet.Find(id);
         }
 
-        public async virtual Task<ICollection<TEntity>> GetAllAsync()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            return await DbSet.ToListAsync();
-        }
-
-        public virtual IQueryable<TEntity> GetAll()
-        {
-            return DbSet;
+            return DbSet.AsNoTracking().AsEnumerable();
         }
 
         public virtual void Update(TEntity obj)
@@ -57,43 +39,16 @@ namespace VoteMelhor.Infra.Data.Repositories
             SaveChanges();
         }
 
-        public async virtual Task<TEntity> UpdateAsync(TEntity obj)
-        {
-            //DbSet.Update(obj);
-            Db.Entry(obj).State = EntityState.Modified;
-            await Db.SaveChangesAsync();
-            return obj;
-        }
-
         public virtual void Remove(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
             SaveChanges();
         }
 
-        public async virtual Task<TEntity> RemoveAsync(Guid id)
-        {
-            var obj = await DbSet.FindAsync(id);
-            if (obj == null)
-            {
-                return obj;
-            }
-
-            DbSet.Remove(obj);
-            await Db.SaveChangesAsync();
-
-            return obj;
-        }
-
         public void SaveChanges()
         {
             Db.SaveChanges();
         }
-
-        //public async void SaveChangesAsync()
-        //{
-        //    await Db.SaveChangesAsync();
-        //}
 
         public void Dispose()
         {
