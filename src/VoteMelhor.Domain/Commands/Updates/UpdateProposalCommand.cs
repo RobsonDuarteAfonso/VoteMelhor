@@ -4,7 +4,7 @@ using Flunt.Validations;
 using VoteMelhor.Domain.Enumations;
 using VoteMelhor.Domain.Interfaces.Commands;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Updates
 {
     public class UpdateProposalCommand : Notifiable, ICommand
     {

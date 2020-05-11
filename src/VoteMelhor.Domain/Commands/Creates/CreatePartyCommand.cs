@@ -1,27 +1,26 @@
 using Flunt.Notifications;
 using Flunt.Validations;
-using VoteMelhor.Domain.Enumations;
 using VoteMelhor.Domain.Interfaces.Commands;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Creates
 {
-    public class UpdatePoliticalCommand : Notifiable, ICommand
+    public class CreatePartyCommand : Notifiable, ICommand
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public StateEnum State { get; set; }
+        public string Initials { get; set; }
+        public int Number { get; set; }
         public string Image { get; set; }
 
-        public UpdatePoliticalCommand()
+        public CreatePartyCommand()
         {
             
         }
 
-        public UpdatePoliticalCommand(int id, string name, StateEnum state, string image)
+        public CreatePartyCommand(string name, string initials, int number, string image)
         {
-            Id = id;
             Name = name;
-            State = state;
+            Initials = initials;
+            Number = number;
             Image = image;
         }
 
@@ -30,11 +29,12 @@ namespace VoteMelhor.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsNullOrNullable(Id, "Id", "Político é inválido.")
-                    .IsGreaterThan(Id, 0, "Id", "Político é inválido.")
                     .HasMinLen(Name, 3, "Name", "É necessário ao menos 3 caracteres.")
                     .HasMaxLen(Name, 100, "Name", "Não pode ter mais do que 100 caracteres.")
-                    .IsNotNull(State, "State", "Estado é inválido")
+                    .HasMinLen(Initials, 2, "Initials", "É necessário ao menos 2 caracteres.")
+                    .HasMaxLen(Initials, 50, "Initials", "Não pode ter mais do que 50 caracteres.")
+                    .IsNullOrNullable(Number, "Number", "Político é inválido.")
+                    .IsGreaterThan(Number, 0, "Number", "Político é inválido.")
                     .HasMinLen(Image, 6, "Image", "É necessário ao menos 6 caracteres.")
                     .HasMaxLen(Image, 100, "Image", "Não pode ter mais do que 100 caracteres.")
             );

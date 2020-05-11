@@ -24,6 +24,24 @@ namespace VoteMelhor.Domain.Entities
             State = state;
         }
 
+        public User(string email, string password)
+        {
+            Email = email;
+            Password = new Password(password);
+        }
+        
+        public User(string email, RoleEnum role)
+        {
+            Email = email;
+            Role = role;
+        }
+
+        public User(string email, UserStatusEnum userStatus)
+        {
+            Email = email;
+            UserStatus = userStatus;
+        }        
+
 
         // [JsonConstructor]
         /*         public Usuario(Guid id, string nome, string email, string senha, int status, CodigoConfirmacao codigoConfirmacao, PerfilEnum perfil, ICollection<Classificacao> classificacoes)

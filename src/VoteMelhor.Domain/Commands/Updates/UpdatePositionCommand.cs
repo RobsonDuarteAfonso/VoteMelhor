@@ -1,22 +1,26 @@
+using System;
 using Flunt.Notifications;
 using Flunt.Validations;
 using VoteMelhor.Domain.Interfaces.Commands;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Updates
 {
-    public class CreatePositionCommand : Notifiable, ICommand
+    public class UpdatePositionCommand : Notifiable, ICommand
     {
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public int Current { get; set; }
         public int PoliticalId { get; set; }
+  
 
-        public CreatePositionCommand()
+        public UpdatePositionCommand()
         {
             
         }
 
-        public CreatePositionCommand(string name, int politicalId)
+        public UpdatePositionCommand(Guid id, int current, int politicalId)
         {
-            Name = name;
+            Id = id;
+            Current = current;
             PoliticalId = politicalId;
         }
 
@@ -25,8 +29,9 @@ namespace VoteMelhor.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .HasMinLen(Name, 3, "Name", "É necessário ao menos 3 caracteres.")
-                    .HasMaxLen(Name, 100, "Name", "Não pode ter mais do que 100 caracteres.")
+                    .IsNotEmpty(Id, "Id", "Cargo é inválido.")
+                    .IsNullOrNullable(Current, "Current", "Valor é inválido.")
+                    .IsBetween(Current, 0, 1, "Current", "Valor é inválido.")
                     .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
             );

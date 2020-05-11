@@ -1,23 +1,23 @@
 using Flunt.Notifications;
 using Flunt.Validations;
-using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Enumations;
+using VoteMelhor.Domain.Interfaces.Commands;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Updates
 {
-    public class CreatePoliticalCommand : Notifiable, ICommand
-    {        
+    public class UpdatePoliticalCommand : Notifiable, ICommand
+    {
         public int Id { get; set; }
         public string Name { get; set; }
         public StateEnum State { get; set; }
         public string Image { get; set; }
-        
-        public CreatePoliticalCommand()
+
+        public UpdatePoliticalCommand()
         {
             
         }
 
-        public CreatePoliticalCommand(int id, string name, StateEnum state, string image)
+        public UpdatePoliticalCommand(int id, string name, StateEnum state, string image)
         {
             Id = id;
             Name = name;
@@ -40,4 +40,4 @@ namespace VoteMelhor.Domain.Commands
             );
         }
     }
-}        
+}

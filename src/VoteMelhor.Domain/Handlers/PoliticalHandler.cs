@@ -1,6 +1,8 @@
 using System;
 using Flunt.Notifications;
 using VoteMelhor.Domain.Commands;
+using VoteMelhor.Domain.Commands.Creates;
+using VoteMelhor.Domain.Commands.Updates;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Interfaces.Handlers;

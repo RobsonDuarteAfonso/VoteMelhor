@@ -2,28 +2,27 @@ using System;
 using Flunt.Notifications;
 using Flunt.Validations;
 using VoteMelhor.Domain.Interfaces.Commands;
-using VoteMelhor.Domain.Enumations;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Updates
 {
-    public class UpdateRatingCommand : Notifiable, ICommand
+    public class UpdatePoliticalPartyCommand : Notifiable, ICommand
     {
         public Guid Id { get; set; }
-        public RateEnum Rate { get; set; }
-        public Guid UserId { get; set; }
+        public bool Current { get; set; }
         public int PoliticalId { get; set; }
+        public Guid PartyId { get; set; }
 
-        public UpdateRatingCommand()
+        public UpdatePoliticalPartyCommand()
         {
             
         }
 
-        public UpdateRatingCommand(Guid id, RateEnum rate, Guid userId, int politicalId)
+        public UpdatePoliticalPartyCommand(Guid id, bool current, int politicalId, Guid partyId)
         {
             Id = id;
-            Rate = rate;
-            UserId = userId;
+            Current = current;
             PoliticalId = politicalId;
+            PartyId = partyId;
         }
 
         public void Validate()
@@ -32,10 +31,9 @@ namespace VoteMelhor.Domain.Commands
                 new Contract()
                     .Requires()
                     .IsNotEmpty(Id, "Id", "Id é inválido.")
-                    .IsNotEmpty(UserId, "UserId", "Usuário é inválido.")
-                    .IsNotNull(Rate, "Rate", "Rate é inválido")
                     .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PartyId, "PartyId", "Partido é inválido.")
             );
         }
     }

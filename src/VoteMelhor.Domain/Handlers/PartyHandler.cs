@@ -1,6 +1,8 @@
 using System;
 using Flunt.Notifications;
 using VoteMelhor.Domain.Commands;
+using VoteMelhor.Domain.Commands.Creates;
+using VoteMelhor.Domain.Commands.Updates;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Interfaces.Handlers;
@@ -26,7 +28,7 @@ namespace VoteMelhor.Domain.Handlers
 
             if (command.Invalid)
             {
-                return new CommandResult(false, "Erro nas informações da party.", command.Notifications);
+                return new CommandResult(false, "Erro nas informações do partido.", command.Notifications);
             }
 
             var party = new Party(command.Name, command.Initials, command.Number, command.Image);
@@ -36,11 +38,11 @@ namespace VoteMelhor.Domain.Handlers
             {
                 if (partyChecked != null)
                 {
-                    return new CommandResult(false, "Já existe uma party.", partyChecked);
+                    return new CommandResult(false, "Já existe o partido.", partyChecked);
                 }
 
                 _repository.Add(partyChecked);
-                return new CommandResult(true, "Party adicionado com sucesso.", partyChecked);
+                return new CommandResult(true, "Partido adicionado com sucesso.", partyChecked);
             }
             catch (Exception ex)
             {
@@ -54,14 +56,14 @@ namespace VoteMelhor.Domain.Handlers
 
             if (command.Invalid)
             {
-                return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
+                return new CommandResult(false, "Erro nas informações da partido.", command.Notifications);
             }
 
             var party = _repository.GetById(command.Id);
                 
             if (party == null)
             {
-                return new CommandResult(false, "Você está tentando alterar classificação que não existe.", command);
+                return new CommandResult(false, "Você está tentando alterar partido que não existe.", command);
             }
 
             party.SetName(command.Name);
@@ -72,7 +74,7 @@ namespace VoteMelhor.Domain.Handlers
             try
             {
                 _repository.Update(party);
-                return new CommandResult(true, "Classificação adicionada com sucesso.", party);
+                return new CommandResult(true, "Partido adicionada com sucesso.", party);
             }
             catch (Exception ex)
             {

@@ -6,5 +6,7 @@ namespace VoteMelhor.Domain.Interfaces.Repositories
     public interface IPoliticalPartyRepository : IRepository<PoliticalParty>
     {
         PoliticalParty VerifyExist(PoliticalParty politicalParty);
+        
+        void UpdateCurrent(PoliticalParty politicalParty);
     }
 }

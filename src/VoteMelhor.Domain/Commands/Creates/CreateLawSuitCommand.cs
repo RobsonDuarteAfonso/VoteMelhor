@@ -1,31 +1,29 @@
 using System;
 using Flunt.Notifications;
 using Flunt.Validations;
-using VoteMelhor.Domain.Enumations;
 using VoteMelhor.Domain.Interfaces.Commands;
+using VoteMelhor.Domain.Enumations;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Creates
 {
-    public class UpdateLawSuitCommand : Notifiable, ICommand
-    {
-        public Guid Id { get; set; }
+    public class CreateLawSuitCommand : Notifiable, ICommand
+    {        
         public string Summary { get; set; }
         public string Description { get; set; }
         public DateTime PublicationDate { get; set; }
-        public DateTime UpdateDate { get; set; }
         public SituationEnum Situation { get; set; }
         public int PoliticalId { get; set; }
-
-        public UpdateLawSuitCommand()
+        
+        public CreateLawSuitCommand()
         {
             
         }
 
-        public UpdateLawSuitCommand(Guid id, string summary, string description, SituationEnum situation, int politicalId)
+        public CreateLawSuitCommand(string summary, string description, DateTime publicationDate, SituationEnum situation, int politicalId)
         {
-            Id = id;
             Summary = summary;
             Description = description;
+            PublicationDate = publicationDate;
             Situation = situation;
             PoliticalId = politicalId;
         }
@@ -35,15 +33,16 @@ namespace VoteMelhor.Domain.Commands
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsNotEmpty(Id, "Id", "Id é inválido.")
-                    .HasMinLen(Summary, 3, "Summary", "É necessário ao menos 3 caracteres.")
+                    .HasMinLen(Summary, 6, "Summary", "É necessário ao menos 6 caracteres.")
                     .HasMaxLen(Summary, 200, "Summary", "Não pode ter mais do que 200 caracteres.")
-                    .HasMinLen(Description, 3, "Description", "É necessário ao menos 3 caracteres.")
+                    .HasMinLen(Description, 6, "Description", "É necessário ao menos 6 caracteres.")
                     .HasMaxLen(Description, 2000, "Description", "Não pode ter mais do que 2000 caracteres.")
+                    .IsLowerOrEqualsThan(PublicationDate, DateTime.Now, "PublicationDate","Data tem que se menor ou igual a data de hoje.")
+                    .IsNullOrNullable(PublicationDate, "PublicationDate", "Data é inválida.")
                     .IsNotNull(Situation, "Situation", "Situação é inválido")
                     .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
             );
         }
     }
-}
+}        

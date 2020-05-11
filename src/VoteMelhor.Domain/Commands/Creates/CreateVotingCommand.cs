@@ -4,7 +4,7 @@ using Flunt.Validations;
 using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Enumations;
 
-namespace VoteMelhor.Domain.Commands
+namespace VoteMelhor.Domain.Commands.Creates
 {
     public class CreateVotingCommand : Notifiable, ICommand
     {        
