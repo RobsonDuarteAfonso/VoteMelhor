@@ -76,7 +76,7 @@ namespace VoteMelhor.Domain.Handlers
             try
             {
                 _repository.Update(rating);
-                return new CommandResult(true, "Classificação adicionada com sucesso.", rating);
+                return new CommandResult(true, "Classificação alterado com sucesso.", rating);
             }
             catch (Exception ex)
             {

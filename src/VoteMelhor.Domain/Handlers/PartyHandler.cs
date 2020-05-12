@@ -74,7 +74,7 @@ namespace VoteMelhor.Domain.Handlers
             try
             {
                 _repository.Update(party);
-                return new CommandResult(true, "Partido adicionada com sucesso.", party);
+                return new CommandResult(true, "Partido alterado com sucesso.", party);
             }
             catch (Exception ex)
             {

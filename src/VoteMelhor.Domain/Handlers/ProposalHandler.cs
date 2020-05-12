@@ -77,7 +77,7 @@ namespace VoteMelhor.Domain.Handlers
                 proposal.SetProposalDate(command.ProposalDate);
 
                 _repository.Update(proposal);
-                return new CommandResult(true, "Proposta adicionado com sucesso.", proposal);
+                return new CommandResult(true, "Proposta alterado com sucesso.", proposal);
             }
             catch (Exception ex)
             {

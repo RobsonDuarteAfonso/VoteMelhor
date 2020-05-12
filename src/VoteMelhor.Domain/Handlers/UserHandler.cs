@@ -135,7 +135,7 @@ namespace VoteMelhor.Domain.Handlers
             try
             {
                 _repository.Update(user);
-                return new CommandResult(true, "Usuário adicionada com sucesso.", user);
+                return new CommandResult(true, "Usuário alterado com sucesso.", user);
             }
             catch (Exception ex)
             {

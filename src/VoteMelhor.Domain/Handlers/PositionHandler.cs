@@ -69,7 +69,7 @@ namespace VoteMelhor.Domain.Handlers
                 }
 
                 _repository.UpdateCurrent(command.Id, command.PoliticalId);
-                return new CommandResult(true, "Posição adicionado com sucesso.", position);
+                return new CommandResult(true, "Posição alterado com sucesso.", position);
             }
             catch (Exception ex)
             {

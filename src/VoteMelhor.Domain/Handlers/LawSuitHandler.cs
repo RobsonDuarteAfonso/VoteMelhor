@@ -71,7 +71,7 @@ namespace VoteMelhor.Domain.Handlers
             try
             {
                 _repository.Update(lawSuit);
-                return new CommandResult(true, "Processo adicionado com sucesso.", lawSuit);
+                return new CommandResult(true, "Processo alterado com sucesso.", lawSuit);
             }
             catch (Exception ex)
             {

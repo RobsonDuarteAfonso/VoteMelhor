@@ -70,7 +70,7 @@ namespace VoteMelhor.Domain.Handlers
                 }
 
                 _repository.UpdateCurrent(politicalParty);
-                return new CommandResult(true, "Partido Político adicionado com sucesso.", politicalParty);
+                return new CommandResult(true, "Partido Político alterado com sucesso.", politicalParty);
             }
             catch (Exception ex)
             {

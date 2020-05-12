@@ -74,7 +74,7 @@ namespace VoteMelhor.Domain.Handlers
                 political.SetImage(command.Image);
 
                 _repository.Update(political);
-                return new CommandResult(true, "Político adicionado com sucesso.", political);
+                return new CommandResult(true, "Político alterado com sucesso.", political);
             }
             catch (Exception ex)
             {
