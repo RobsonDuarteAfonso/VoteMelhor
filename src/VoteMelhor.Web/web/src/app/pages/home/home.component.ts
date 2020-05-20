@@ -7,16 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  conteudo = 1;
-
-  constructor() {
-    this.MostrarConteudo(1);
-   }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  MostrarConteudo(value: number) {
-    this.conteudo = value;
-  }
 }

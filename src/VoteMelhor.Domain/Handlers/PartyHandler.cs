@@ -41,12 +41,12 @@ namespace VoteMelhor.Domain.Handlers
                     return new CommandResult(false, "Já existe o partido.", partyChecked);
                 }
 
-                _repository.Add(partyChecked);
-                return new CommandResult(true, "Partido adicionado com sucesso.", partyChecked);
+                _repository.Add(party);
+                return new CommandResult(true, "Partido adicionado com sucesso.", party);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", partyChecked);
+                return new CommandResult(false, $"Erro: {ex.Message}", party);
             }
         }
 

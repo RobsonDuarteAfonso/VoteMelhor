@@ -13,7 +13,6 @@ using VoteMelhor.Domain.Handlers;
 using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.Infra.Data;
 using VoteMelhor.Infra.Data.Repositories;
-using VoteMelhor.WebApi.AutoMapper;
 using VoteMelhor.WebApi.Services;
 
 namespace VoteMelhor.WebApi
@@ -45,7 +44,7 @@ namespace VoteMelhor.WebApi
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddMvc().AddNewtonsoftJson(opt => {
-                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    opt.SerializerSettings.Converters.Add(new StringEnumConverter());                
             });
 
             //WebApi
@@ -54,36 +53,26 @@ namespace VoteMelhor.WebApi
             // Application
             services.AddTransient<LawSuitHandler, LawSuitHandler>();
             services.AddTransient<PartyHandler, PartyHandler>();
-            //services.AddTransient<PoliticalPartyHandler, PoliticalPartyitHandler>();
+            services.AddTransient<PoliticalPartyHandler, PoliticalPartyHandler>();
             services.AddTransient<PoliticalHandler, PoliticalHandler>();
             services.AddTransient<PositionHandler, PositionHandler>();
-            //services.AddTransient<ProposalHandler, ProposalHandler>();
+            services.AddTransient<ProposalHandler, ProposalHandler>();
             services.AddTransient<RatingHandler, RatingHandler>();
-            //services.AddTransient<UserHandler, UserHandler>();
-            //services.AddTransient<VotingHandler, VotingHandler>();
+            services.AddTransient<UserHandler, UserHandler>();
+            services.AddTransient<VotingHandler, VotingHandler>();
 
 
             // Infra - Data
+            services.AddTransient<IVotingRepository, VotingRepository>();
+            services.AddTransient<IRatingRepository, RatingRepository>();
+            services.AddTransient<IProposalRepository, ProposalRepository>();
+            services.AddTransient<ILawSuitRepository, LawSuitRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IPoliticalRepository, PoliticalRepository>();
             services.AddTransient<IPartyRepository, PartyRepository>();
             services.AddTransient<IPositionRepository, PositionRepository>();
             services.AddTransient<IPoliticalPartyRepository, PoliticalPartyRepository>();
             services.AddTransient<VoteMelhorContext>();
-
-            //Validations
-            //services.AddScoped<CreateUsuarioValidation>();
-
-            // AutoMapper Settings
-            // services.AddAutoMapperSetup();
-
-
-            // ASP.NET HttpContext dependency
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            // .NET Native DI Abstraction
-            //services.AddDependencyInjectionSetup();
-
 
             //Config Autentication
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SettingsKey:Secret"));
@@ -105,6 +94,11 @@ namespace VoteMelhor.WebApi
                     ValidateAudience = false
                 };
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Vote Melhor", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,6 +108,12 @@ namespace VoteMelhor.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vote Melhor");
+            });
 
             app.UseRouting();
 

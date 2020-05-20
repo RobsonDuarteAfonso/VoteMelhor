@@ -4,6 +4,7 @@ using VoteMelhor.Domain.Commands;
 using VoteMelhor.Domain.Commands.Creates;
 using VoteMelhor.Domain.Commands.Updates;
 using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Enumations;
 using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Interfaces.Handlers;
 using VoteMelhor.Domain.Interfaces.Repositories;
@@ -40,15 +41,17 @@ namespace VoteMelhor.Domain.Handlers
             {
                 if (user != null)
                 {
-                    return new CommandResult(false, "Já existe um usuário.", user);
+                    return new CommandResult(false, "Já existe um usuário.", newUser);
                 }
 
-                _repository.Add(user);
-                return new CommandResult(true, "Usuário adicionado com sucesso.", user);
+                newUser.SetRole(RoleEnum.USR);
+
+                _repository.Add(newUser);
+                return new CommandResult(true, "Usuário adicionado com sucesso.", newUser);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", user);
+                return new CommandResult(false, $"Erro: {ex.Message}", newUser);
             }
         }
 

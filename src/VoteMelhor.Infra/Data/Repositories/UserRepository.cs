@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.Domain.Queries;
@@ -15,10 +16,10 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         public User AuthenticateUser(User user)
         {
-            var newUser = Db.Users.FirstOrDefault(UserQueries.AuthenticateUser(user));
+            var newUser = Db.Users.AsNoTracking().FirstOrDefault(UserQueries.AuthenticateUser(user));
             newUser.Password.SetPasswordNull();
 
-            return user;
+            return newUser;
         }
 
         public User VerifyExist(User user)

@@ -31,12 +31,12 @@ namespace VoteMelhor.Domain.Handlers
                 return new CommandResult(false, "Erro nas informações da votação.", command.Notifications);
             }
 
-            var newVoting = new Voting(command.Vote, command.VotingDate, command.PoliticalId, command.ProposalId);
-            var voting = _repository.VerifyExist(newVoting);
+            var voting = new Voting(command.Vote, command.VotingDate, command.PoliticalId, command.ProposalId);
+            var votingChecked = _repository.VerifyExist(voting);
             
             try
             {
-                if (voting != null)
+                if (votingChecked != null)
                 {
                     return new CommandResult(false, "Já existe uma votação.", voting);
                 }

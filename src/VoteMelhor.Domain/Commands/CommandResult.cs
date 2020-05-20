@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using VoteMelhor.Domain.Interfaces.Commands;
 
 namespace VoteMelhor.Domain.Commands

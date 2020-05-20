@@ -8,7 +8,7 @@ namespace VoteMelhor.Domain.Queries
     {
         public static Expression<Func<User, bool>> AuthenticateUser(User user)
         {
-            return x => x.Email == user.Email && x.Password == user.Password;
+            return x => x.Email == user.Email && x.Password.Code == user.Password.Code;
         }
 
         public static Expression<Func<User, bool>> VerifyExist(User user)

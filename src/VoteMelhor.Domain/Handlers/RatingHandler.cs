@@ -41,12 +41,12 @@ namespace VoteMelhor.Domain.Handlers
                     return new CommandResult(false, "Já existe uma classificação.", ratingChecked);
                 }
 
-                _repository.Add(ratingChecked);
-                return new CommandResult(true, "Classificação adicionada com sucesso.", ratingChecked);
+                _repository.Add(rating);
+                return new CommandResult(true, "Classificação adicionada com sucesso.", rating);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", ratingChecked);
+                return new CommandResult(false, $"Erro: {ex.Message}", rating);
             }
         }
 

@@ -45,7 +45,7 @@ namespace VoteMelhor.WebApi.Controllers
         [Route("add-senadores")]
         //[AuthorizeEnum(Perfil.ADM)]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> AddSenadores()
+        public void AddSenadores()
         {
 /*                 try
                 {
@@ -138,14 +138,14 @@ namespace VoteMelhor.WebApi.Controllers
                     return BadRequest($"Erro: {ex.Message}");
                 } */
 
-                return Ok();
+                //return Ok();
         }
 
         [HttpGet]
         [Route("add-all-partidos")]
         //[AuthorizeEnum(Perfil.ADM)]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> AddAllPartidos()
+        public void AddAllPartidos()
         {
 /*             try
             {
@@ -182,7 +182,7 @@ namespace VoteMelhor.WebApi.Controllers
             {
                 return BadRequest($"Erro: {ex.Message}");
             }      */     
-            return Ok();  
+            //return Ok();  
         }
     }
 }
