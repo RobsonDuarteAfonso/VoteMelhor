@@ -12,10 +12,6 @@ export class MenuComponent implements OnInit {
 
   @ViewChild('header', { static: true }) element: ElementRef;
 
-
-
-
-
   constructor() { }
 
   ngOnInit() {

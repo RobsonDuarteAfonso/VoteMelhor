@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/material-design-icons/iconfont/material-icons.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
@@ -16,7 +17,7 @@ html {
 html,
 body {
   height: 100vh;
-  font-family: "Arial";
+  font-family: 'Roboto', sans-serif;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -30,4 +31,10 @@ body {
   color: rgb(196, 4, 4);
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+.Container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0px 15px;
 }

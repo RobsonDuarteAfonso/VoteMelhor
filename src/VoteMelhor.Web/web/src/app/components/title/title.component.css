@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap');
+
+.title {
+  height: 110px;
+  max-width: 980px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 950px;
+  height: 80px;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 5px;
+  font-weight: bolder;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #999;
+  z-index: 1;
+  margin-top: -110px;
+}
+
+.bar1 {
+  -webkit-clip-path:polygon(23% 77%, 18% 28%, 6% 30%, 0 74%, 0 98%, 7% 47%, 17% 45%, 22% 93%, 100% 92%, 100% 77%);
+  clip-path: polygon(23% 77%, 18% 28%, 6% 30%, 0 74%, 0 98%, 7% 47%, 17% 45%, 22% 93%, 100% 92%, 100% 77%);
+  max-width:950px;
+  height:110px;
+  background:#5ABA47;
+  z-index: 4;
+  opacity: 70%;
+ }
+
+ .bar2 {
+  -webkit-clip-path:polygon(13% 9%, 7% 9%, 1% 54%, 1% 76%, 8% 26%, 12% 25%, 17% 77%, 100% 78%, 100% 62%, 18% 62%);
+  clip-path: polygon(13% 9%, 7% 9%, 1% 54%, 1% 76%, 8% 26%, 12% 25%, 17% 77%, 100% 78%, 100% 62%, 18% 62%);
+  max-width:950px;
+  height:110px;
+  background:#E7BC20;
+  margin-top: -110px;
+  z-index: 3;
+  opacity: 70%;
+ }
+
+ .bar3 {
+  -webkit-clip-path:polygon(7% 52%, 100% 50%, 100% 67%, 6% 67%, 0 24%, 0 0);
+  clip-path: polygon(7% 52%, 100% 50%, 100% 67%, 6% 67%, 0 24%, 0 0);
+  max-width:950px;
+  height:110px;
+  background:#0067A9;
+  margin-top: -112px;
+  z-index: 2;
+  opacity: 70%;
+ }
+

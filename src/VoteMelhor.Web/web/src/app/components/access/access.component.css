@@ -1,0 +1,29 @@
+li {
+  list-style: none;
+}
+
+.perfil a {
+  text-decoration: none;
+  color: rgb(160, 160, 160);
+  transition: all 250ms linear 0s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.perfil a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.perfil a.active {
+  background-color: rgba(248, 197, 0, 0.5);
+}
+
+.acesso {
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20rem;
+  height: 7.1rem;
+}

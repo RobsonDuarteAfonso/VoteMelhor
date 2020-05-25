@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { LoginComponent } from './login/login.component';
 import { MessageComponent } from './menssage/message.component';
-
+import { ListBestPoliticalComponent } from './list-best-political/list-best-political.component';
+import { TitleComponent } from './title/title.component';
+import { TitleHomeComponent } from './title-home/title-home.component';
+import { CardPoliticalComponent } from './card-political/card-political.component';
 
 @NgModule({
   declarations: [
     MessageComponent,
-    LoginComponent
+    ListBestPoliticalComponent,
+    TitleComponent,
+    TitleHomeComponent,
+    CardPoliticalComponent
   ],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule
+    CommonModule
   ],
   exports: [
     MessageComponent,
-    LoginComponent
+    ListBestPoliticalComponent,
+    TitleComponent,
+    TitleHomeComponent
   ]
 })
 export class ComponentsModule { }

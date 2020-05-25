@@ -20,6 +20,13 @@ header nav ul {
 
 header nav ul li {
   list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+header nav ul app-perfil {
+  margin-left: 20px;
+  width: 20rem;
 }
 
 header nav ul li a {
@@ -45,6 +52,7 @@ header nav ul li a.active {
   header nav ul li a {
     font-size: 1.2rem;
     padding: 12px;
+    padding-top: 26px;
   }
 
   header img {
@@ -53,7 +61,7 @@ header nav ul li a.active {
 
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
   header nav ul li a {
     padding: 10px;
@@ -72,9 +80,9 @@ header nav ul li a.active {
     padding: 10px;
   }
 
-}
+} */
 
-@media (max-width: 580px) {
+@media (max-width: 770px) {
 
   nav {
     display: none;
@@ -116,7 +124,7 @@ header nav ul li a.active {
   .menu-section.on .menu-toggle {
     position: absolute;
     right: 1px;
-    top: 25px;
+    top: 22px;
   }
 
   .menu-section.on .menu-toggle .one {

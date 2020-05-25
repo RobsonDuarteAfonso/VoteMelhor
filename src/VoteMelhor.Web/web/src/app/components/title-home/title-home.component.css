@@ -1,0 +1,55 @@
+.title {
+  height: 110px;
+  max-width: 980px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 120px;
+  max-width: 950px;
+  height: 110px;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 5px;
+  font-weight: bolder;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #999;
+  z-index: 1;
+  margin-top: -110px;
+}
+
+.square1 {
+  -webkit-clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  max-width:70px;
+  height:70px;
+  background:#5ABA47;
+  z-index: 4;
+  opacity: 70%;
+ }
+
+ .square2 {
+  -webkit-clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  max-width:100px;
+  height:100px;
+  background:#E7BC20;
+  margin-top: -50px;
+  z-index: 3;
+  opacity: 70%;
+ }
+
+ .square3 {
+  -webkit-clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  max-width:50px;
+  height:50px;
+  background:#0067A9;
+  margin-top: -52px;
+  z-index: 2;
+  opacity: 70%;
+ }

@@ -1,5 +1,5 @@
 <header #header>
-    <img src="../../../assets/images/logo.svg">
+    <img src="../../../assets/images/logo2.svg">
     <div class="menu-section" [className]="show ? 'menu-section on' : 'menu-section'">
       <div class="menu-toggle" (click)="menuToggle()">
         <div class="one"></div>
@@ -9,9 +9,10 @@
       <nav>
         <ul>
           <li class="item"><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOME</a></li>
-          <li class="item"><a [routerLink]="['/pesquisar']" routerLinkActive="active">PESQUISAR</a></li>
-          <li class="item"><a [routerLink]="['/proposito']" routerLinkActive="active">PROPÓSITO</a></li>
-          <li class="item"><a [routerLink]="['/contato']" routerLinkActive="active">CONTATO</a></li>
+          <li class="item"><a [routerLink]="['/search']" routerLinkActive="active">PESQUISAR</a></li>
+          <li class="item"><a [routerLink]="['/proposal']" routerLinkActive="active">PROPÓSITO</a></li>
+          <li class="item"><a [routerLink]="['/contact']" routerLinkActive="active">CONTATO</a></li>
+          <app-access></app-access>
         </ul>
       </nav>
     </div>

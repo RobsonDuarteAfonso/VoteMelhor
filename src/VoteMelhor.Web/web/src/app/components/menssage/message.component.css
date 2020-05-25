@@ -3,6 +3,10 @@ section {
   font-size: 1.6rem;
   color: rgb(73, 73, 73);
   padding-top: 50px;
+  display: flex;
+  max-width: 980px;
+  justify-content: space-between;
+
 }
 
 h2 {
@@ -15,23 +19,17 @@ p {
   margin-bottom: 30px;
 }
 
-section .container {
-  display: flex;
-  max-width: 960px;
-  justify-content: space-between;
-}
-
-section .container .buttons {
+section .buttons {
   display: inline-flex;
   justify-content: space-between;
   width: 200px;
 }
 
 @media (max-width: 767px) {
-  .container {
+  section {
     flex-direction: column;
   }
-  .container img {
+  section img {
     order: -1;
     margin-bottom: 30px;
   }
