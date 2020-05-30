@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,15 +7,15 @@ using VoteMelhor.WebApi.Raws;
 
 namespace VoteMelhor.WebApi.Services
 {
-    public class SenadoFederalService
+    public class HouseRepresentativesService
     {
-        public async Task<PoliticosSenadores_Raw> GetListaSenadores()
+        public async Task<Congressman_Raw> GetListCongressmen()
         {
             using (var httpClient = new HttpClient())
             {
                 try
                 {
-                    using var response = await httpClient.GetAsync("http://legis.senado.leg.br/dadosabertos/senador/lista/atual");
+                    using var response = await httpClient.GetAsync("https://dadosabertos.camara.leg.br/api/v2/deputados");
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     XmlDocument doc = new XmlDocument();
@@ -24,7 +24,7 @@ namespace VoteMelhor.WebApi.Services
                     string jsonString = JsonConvert.SerializeXmlNode(doc);
 
                     // Site para gerar a class do objeto: jsonutils.com
-                    PoliticosSenadores_Raw jsonNet = JsonConvert.DeserializeObject<PoliticosSenadores_Raw>(jsonString);
+                    Congressman_Raw jsonNet = JsonConvert.DeserializeObject<Congressman_Raw>(jsonString);
 
                     return jsonNet;
                 }

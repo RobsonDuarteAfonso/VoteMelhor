@@ -8,8 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
+using VoteMelhor.Domain.Commands;
+using VoteMelhor.Domain.Commands.Creates;
+using VoteMelhor.Domain.Commands.Updates;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Enumations;
+using VoteMelhor.Domain.Handlers;
+using VoteMelhor.Domain.Interfaces.Commands;
+using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.WebApi.Raws;
 using VoteMelhor.WebApi.Services;
 
@@ -20,169 +26,108 @@ namespace VoteMelhor.WebApi.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-/*         private readonly IPoliticoPartidoService _politicoPartidoService;
-        private readonly IPoliticoService _politicoService;
-        private readonly IPartidoService _partidoService;
-        private readonly ICargoService _cargoService; 
-        private readonly IMapper _mapper;*/
-
-        public AdminController(
-/*             IPoliticoPartidoService politicoPartidoService,
-            IPartidoService partidoService,
-            IPoliticoService politicoService,
-            ICargoService cargoService, 
-            IMapper mapper*/
-            )
+        public AdminController()
         {
-/*             _politicoPartidoService = politicoPartidoService;
-            _politicoService = politicoService;
-            _partidoService = partidoService;
-            _cargoService = cargoService; 
-            _mapper = mapper;*/
         }
 
         [HttpGet]
-        [Route("add-senadores")]
+        [Route("senators")]
         //[AuthorizeEnum(Perfil.ADM)]
         [AllowAnonymous]
-        public void AddSenadores()
+        public async Task<CommandResult> GetSenators(
+            [FromServices]
+            SenatorCongressmanHandler senatorCongressmanHandler
+        )
         {
-/*                 try
-                {
+            var _listCmdResult = new List<ICommandResult>();
 
-                var senadoFederalService = new SenadoFederalService();
+            try
+            {
+                var federalSenateService = new FederalSenateService();
 
-                var jsonNet = await senadoFederalService.GetListaSenadores();
+                var jsonNet = await federalSenateService.GetListSenators();
 
                 foreach (var item in jsonNet.ListaParlamentarEmExercicio.Parlamentares.Parlamentar)
                 {
                     var itemrecebido = item.IdentificacaoParlamentar;
 
-                    if (_politicoService.VerifyExist(Convert.ToInt32(itemrecebido.CodigoParlamentar)) == null)
+                    Political _political = new Political(
+                        0,
+                        Convert.ToInt32(itemrecebido.CodigoParlamentar),
+                        itemrecebido.NomeParlamentar,
+                        itemrecebido.NomeCompletoParlamentar,
+                        (StateEnum)Enum.Parse(typeof(StateEnum), itemrecebido.UfParlamentar),
+                        itemrecebido.UrlFotoParlamentar
+                    );
+
+                    string _party = itemrecebido.SiglaPartidoParlamentar;
+
+                    //Correction
+                    if (_party == "PODEMOS")
                     {
-                        PoliticoViewModel _politico = new PoliticoViewModel();
-                        PoliticoPartidoViewModel _politicoPartido = new PoliticoPartidoViewModel();
-                        CargoViewModel _cargo = new CargoViewModel();
-                        PartidoViewModel _partido = new PartidoViewModel();
-
-                        _politico.Id = Convert.ToInt32(itemrecebido.CodigoParlamentar);
-                        _politico.Nome = itemrecebido.NomeParlamentar;
-                        _politico.Imagem = itemrecebido.UrlFotoParlamentar;
-                        _politico.Estado = (EstadoEnum)Enum.Parse(typeof(EstadoEnum), itemrecebido.UfParlamentar);
-
-                        _politicoService.AddNewPolitico(_mapper.Map<Politico>(_politico));
-
-                        _partido = _mapper.Map<PartidoViewModel>(_partidoService.VerifyExist(itemrecebido.SiglaPartidoParlamentar));
-
-                        if (_partido == null)
-                        {
-                            return BadRequest($"Partido com a sigla { itemrecebido.SiglaPartidoParlamentar } não existe.");
-                        }
-
-                        _politicoPartido = _mapper.Map<PoliticoPartidoViewModel>(_politicoPartidoService.VerifyExist(_politico.Id, _partido.Id));
-
-                        if (_politicoPartido == null)
-                        {
-                            //_politicoPartidoService.SetAtual(_politico.Id, 0);
-
-                            _politicoPartido.Atual = 1;
-                            _politicoPartido.Partido = _partido;
-                            _politicoPartido.Politico = _politico;
-
-                            _politicoPartidoService.Add(_mapper.Map<PoliticoPartido>(_politicoPartido));
-                        }
-                        else
-                        {
-                            if (_politicoPartido.Atual != 1)
-                            {
-                                _politicoPartido.Atual = 1;
-                                //_politicoPartidoService.SetAtual(_politico.Id, 0);
-                                _politicoPartidoService.Update(_mapper.Map<PoliticoPartido>(_politicoPartido));
-                            }
-                        }
-
-                        _cargo.Nome = "Senador";
-                        _cargo.Politico = _politico;
-
-                        _cargo = _mapper.Map<CargoViewModel>(_cargoService.VerifyExist(_mapper.Map<Cargo>(_cargo)));
-
-                        if (_cargo == null)
-                        {
-                            _cargoService.SetAtual(_politico.Id, 0);
-
-                            _cargo.Atual = 1;
-                            _cargo.Politico = _politico;
-                            _cargo.Nome = "Senador";
-
-                            _cargoService.Add(_mapper.Map<Cargo>(_cargo));
-                        }
-                        else
-                        {
-                            if (_cargo.Atual != 1)
-                            {
-                                _cargo.Atual = 1;
-                                _cargoService.SetAtual(_politico.Id, 0);
-                                _cargoService.Update(_mapper.Map<Cargo>(_cargo));
-                            }
-                        }
-
-                        Ok("Sucesso");
+                        _party = "PODE";
                     }
 
+                    Position _position = new Position("SENADOR", true, _political.Id);
+
+                    SenatorCongressmanCommand _command = new SenatorCongressmanCommand(_political, _position, _party);
+
+                    var _result = (CommandResult)senatorCongressmanHandler.Handle(_command);
+
+                    _listCmdResult.Add(_result);
                 }
 
-                return Ok("Sucesso");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest($"Erro: {ex.Message}");
-                } */
-
-                //return Ok();
+                return new CommandResult(true, "Todos os senadores carregados.", _listCmdResult);
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult(false, $"Erro: {ex.Message}", _listCmdResult);
+            }
         }
 
         [HttpGet]
-        [Route("add-all-partidos")]
+        [Route("add-all-partys")]
         //[AuthorizeEnum(Perfil.ADM)]
         [AllowAnonymous]
-        public void AddAllPartidos()
+        public CommandResult AddAllPartidos(
+            [FromServices]
+            PartyHandler partyHandler
+        )
         {
-/*             try
+            var _listCmdResult = new List<ICommandResult>();
+
+            try
             {
                 var webClient = new WebClient();
                 var json = webClient.DownloadString("./Extra/partidos.json");
 
-                List<Partidos_Raw> jsonNet = JsonConvert.DeserializeObject<List<Partidos_Raw>>(json);
+                List<Partys_Raw> jsonNet = JsonConvert.DeserializeObject<List<Partys_Raw>>(json);
 
                 foreach (var item in jsonNet)
                 {
-                    PartidoViewModel _partido = new PartidoViewModel();
+                    CreatePartyCommand _command = new CreatePartyCommand(item.Nome, item.Sigla, item.Numero, item.Imagem);
 
-                    _partido.Sigla = item.Sigla;
-                    _partido.Nome = item.Nome;
-                    _partido.Imagem = item.Imagem;
-                    _partido.Numero = item.Numero;
+                    var _result = (CommandResult)partyHandler.Handle(_command);
 
-                    Partido partido = _mapper.Map<Partido>(_partido);
+                    _listCmdResult.Add(_result);
 
-                    if (_partidoService.VerifyExist(partido) == null)
+                    if (_result.Success == false && _result.Message == "Já existe o partido.")
                     {
-                       await _partidoService.AddAsync(partido);
-                    }
-                    else
-                    {
-                       await _partidoService.UpdateAsync(partido);
+                        UpdatePartyCommand _commandUp = new UpdatePartyCommand(item.Nome, item.Sigla, item.Numero, item.Imagem);
+
+                        _result = (CommandResult)partyHandler.Handle(_command);
+
+                        _listCmdResult.Add(_result);
                     }
                 }
-                
-                return Ok("Partidos Cadastrados com Sucesso.");
+
+                return new CommandResult(true, "Todos os partidos carregados.", _listCmdResult);
 
             }
             catch (Exception ex)
             {
-                return BadRequest($"Erro: {ex.Message}");
-            }      */     
-            //return Ok();  
+                return new CommandResult(false, $"Erro: {ex.Message}", _listCmdResult);
+            }
         }
     }
 }

@@ -14,12 +14,12 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public Position VerifyExist(Position position)
+        public Position VerifyExist(Guid politicalId, string name)
         {
-            return DbSet.FirstOrDefault(PositionQueries.VerifyExist(position));
+            return DbSet.FirstOrDefault(PositionQueries.VerifyExist(politicalId, name));
         }
 
-        public void UpdateCurrent(Guid id, int politicalId)
+        public void UpdateCurrent(Guid id, Guid politicalId)
         {
             using var transaction = Db.Database.BeginTransaction();            
             try

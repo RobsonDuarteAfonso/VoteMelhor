@@ -45,9 +45,9 @@ namespace VoteMelhor.Infra.Data.Repositories
             }
         }
 
-        public PoliticalParty VerifyExist(PoliticalParty politicalParty)
+        public PoliticalParty VerifyExist(Guid politicalId, Guid partyId)
         {
-            return DbSet.FirstOrDefault(PoliticalPartyQueries.VerifyExist(politicalParty));
+            return DbSet.FirstOrDefault(PoliticalPartyQueries.VerifyExist(politicalId, partyId));
         }
     }
 }

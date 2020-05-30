@@ -7,11 +7,11 @@ namespace VoteMelhor.Domain.Entities
     {
         public RateEnum Rate { get; private set; }
         public Guid UserId { get; private set; }
-        public int PoliticalId { get; private set; }
+        public Guid PoliticalId { get; private set; }
         public virtual User User { get; private set; }
         public virtual Political Political { get; private set; }
 
-        public Rating(RateEnum rate, Guid userId, int politicalId)
+        public Rating(RateEnum rate, Guid userId, Guid politicalId)
         {
             Rate = rate;
             UserId = userId;

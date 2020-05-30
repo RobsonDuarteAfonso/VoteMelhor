@@ -9,7 +9,7 @@ namespace VoteMelhor.Domain.Commands.Updates
     {
         public Guid Id { get; set; }
         public bool Current { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
         public Guid PartyId { get; set; }
 
         public UpdatePoliticalPartyCommand()
@@ -17,7 +17,7 @@ namespace VoteMelhor.Domain.Commands.Updates
             
         }
 
-        public UpdatePoliticalPartyCommand(Guid id, bool current, int politicalId, Guid partyId)
+        public UpdatePoliticalPartyCommand(Guid id, bool current, Guid politicalId, Guid partyId)
         {
             Id = id;
             Current = current;
@@ -31,8 +31,7 @@ namespace VoteMelhor.Domain.Commands.Updates
                 new Contract()
                     .Requires()
                     .IsNotEmpty(Id, "Id", "Id é inválido.")
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsNotEmpty(PartyId, "PartyId", "Partido é inválido.")
             );
         }

@@ -60,6 +60,7 @@ namespace VoteMelhor.WebApi
             services.AddTransient<RatingHandler, RatingHandler>();
             services.AddTransient<UserHandler, UserHandler>();
             services.AddTransient<VotingHandler, VotingHandler>();
+            services.AddTransient<SenatorCongressmanHandler, SenatorCongressmanHandler>();
 
 
             // Infra - Data

@@ -8,7 +8,7 @@ namespace VoteMelhor.Domain.Commands.Creates
     public class CreatePoliticalPartyCommand : Notifiable, ICommand
     {        
         public bool Current { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
         public Guid PartyId { get; set; }
         
         public CreatePoliticalPartyCommand()
@@ -16,7 +16,7 @@ namespace VoteMelhor.Domain.Commands.Creates
             
         }
 
-        public CreatePoliticalPartyCommand(bool current, int politicalId, Guid partyId)
+        public CreatePoliticalPartyCommand(bool current, Guid politicalId, Guid partyId)
         {
             Current = current;
             PoliticalId = politicalId;
@@ -28,8 +28,7 @@ namespace VoteMelhor.Domain.Commands.Creates
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsNotEmpty(PartyId, "PartyId", "Partido é inválido.")
             );
         }

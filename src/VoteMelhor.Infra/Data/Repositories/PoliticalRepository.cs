@@ -15,7 +15,7 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public void AddNewPolitical(Political political)
+        public void AddPolitical(Political political)
         {
             using var transaction = Db.Database.BeginTransaction();
             try
@@ -33,9 +33,14 @@ namespace VoteMelhor.Infra.Data.Repositories
             }
         }
 
-        public Political VerifyExist(Political political)
+        public Political VerifyExist(int congressmanId, int senatorId)
         {
-            return DbSet.FirstOrDefault(PoliticalQueries.VerifyExist(political));
+            return DbSet.FirstOrDefault(PoliticalQueries.VerifyExist(congressmanId, senatorId));
+        }
+
+        public Political VerifyExistFullName(string fullName)
+        {
+            return DbSet.FirstOrDefault(PoliticalQueries.VerifyExistFullName(fullName));
         }
     }
 }

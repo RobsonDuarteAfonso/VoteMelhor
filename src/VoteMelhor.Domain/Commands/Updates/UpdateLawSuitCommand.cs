@@ -14,14 +14,14 @@ namespace VoteMelhor.Domain.Commands.Updates
         public DateTime PublicationDate { get; set; }
         public DateTime UpdateDate { get; set; }
         public SituationEnum Situation { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
 
         public UpdateLawSuitCommand()
         {
             
         }
 
-        public UpdateLawSuitCommand(Guid id, string summary, string description, SituationEnum situation, int politicalId)
+        public UpdateLawSuitCommand(Guid id, string summary, string description, SituationEnum situation, Guid politicalId)
         {
             Id = id;
             Summary = summary;
@@ -41,8 +41,7 @@ namespace VoteMelhor.Domain.Commands.Updates
                     .HasMinLen(Description, 3, "Description", "É necessário ao menos 3 caracteres.")
                     .HasMaxLen(Description, 2000, "Description", "Não pode ter mais do que 2000 caracteres.")
                     .IsNotNull(Situation, "Situation", "Situação é inválido")
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
             );
         }
     }

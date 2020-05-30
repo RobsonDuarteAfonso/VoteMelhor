@@ -19,6 +19,11 @@ namespace VoteMelhor.Domain.Entities
             Image = image;
         }
 
+        public Party(string initials)
+        {
+            Initials = initials;
+        }
+
         // Empty constructor for EF
         protected Party()
         {

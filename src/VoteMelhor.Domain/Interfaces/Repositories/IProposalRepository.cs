@@ -1,9 +1,10 @@
-﻿using VoteMelhor.Domain.Entities;
+﻿using System;
+using VoteMelhor.Domain.Entities;
 
 namespace VoteMelhor.Domain.Interfaces.Repositories
 {
     public interface IProposalRepository : IRepository<Proposal>
     {
-        Proposal VerifyExist(Proposal proposal);
+        Proposal VerifyExist(Guid id);
     }
 }

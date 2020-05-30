@@ -6,9 +6,9 @@ namespace VoteMelhor.Domain.Queries
 {
     public static class LawSuitQueries
     {
-        public static Expression<Func<LawSuit, bool>> GetAllByPolitical(Political political)
+        public static Expression<Func<LawSuit, bool>> GetAllByPoliticalId(Guid id)
         {
-            return x => x.Political == political;
+            return x => x.Political.Id == id;
         }
     }
 }

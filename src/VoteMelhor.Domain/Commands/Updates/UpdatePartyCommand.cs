@@ -7,7 +7,6 @@ namespace VoteMelhor.Domain.Commands.Updates
 {
     public class UpdatePartyCommand : Notifiable, ICommand
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Initials { get; set; }
         public int Number { get; set; }
@@ -18,9 +17,8 @@ namespace VoteMelhor.Domain.Commands.Updates
             
         }
 
-        public UpdatePartyCommand(Guid id, string name, string initials, int number, string image)
+        public UpdatePartyCommand(string name, string initials, int number, string image)
         {
-            Id = id;
             Name = name;
             Initials = initials;
             Number = number;
@@ -32,7 +30,6 @@ namespace VoteMelhor.Domain.Commands.Updates
             AddNotifications(
                 new Contract()
                     .Requires()
-                    .IsNotEmpty(Id, "Id", "Id é inválido.")
                     .HasMinLen(Name, 3, "Name", "É necessário ao menos 3 caracteres.")
                     .HasMaxLen(Name, 100, "Name", "Não pode ter mais do que 100 caracteres.")
                     .HasMinLen(Initials, 2, "Initials", "É necessário ao menos 2 caracteres.")

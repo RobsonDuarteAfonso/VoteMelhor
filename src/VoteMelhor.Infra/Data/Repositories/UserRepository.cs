@@ -22,9 +22,9 @@ namespace VoteMelhor.Infra.Data.Repositories
             return newUser;
         }
 
-        public User VerifyExist(User user)
+        public User VerifyExist(string email)
         {        
-            return Db.Users.FirstOrDefault(UserQueries.VerifyExist(user));
+            return Db.Users.FirstOrDefault(UserQueries.VerifyExist(email));
         }
     }
 }

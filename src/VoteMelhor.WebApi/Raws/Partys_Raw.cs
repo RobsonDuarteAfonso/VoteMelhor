@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace VoteMelhor.WebApi.Raws
 {
-    public class Partidos_Raw
+    public class Partys_Raw
     {
         [JsonProperty("sigla")]
         public string Sigla { get; set; }

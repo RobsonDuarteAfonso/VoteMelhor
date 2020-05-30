@@ -19,6 +19,11 @@ namespace VoteMelhor.Infra.Data.Mappings
             builder.Property(c => c.Name)
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100)
+                .IsRequired();            
+
+            builder.Property(c => c.FullName)
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(c => c.State)

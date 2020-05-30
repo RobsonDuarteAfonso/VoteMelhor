@@ -10,7 +10,7 @@ namespace VoteMelhor.Domain.Commands.Creates
     {        
         public VoteEnum Vote { get; set; }
         public DateTime VotingDate { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
         public Guid ProposalId { get; set; }
         
         public CreateVotingCommand()
@@ -18,7 +18,7 @@ namespace VoteMelhor.Domain.Commands.Creates
             
         }
 
-        public CreateVotingCommand(VoteEnum vote, DateTime votingDate, int politicalId, Guid proposalId)
+        public CreateVotingCommand(VoteEnum vote, DateTime votingDate, Guid politicalId, Guid proposalId)
         {
             Vote = vote;
             VotingDate = votingDate;
@@ -34,8 +34,7 @@ namespace VoteMelhor.Domain.Commands.Creates
                     .IsNotNull(Vote, "Vote", "Voto é inválido")
                     .IsLowerOrEqualsThan(VotingDate, DateTime.Now, "VotingDate","Data tem que se menor ou igual a data de hoje.")
                     .IsNullOrNullable(VotingDate, "VotingDate", "Data é inválida.")
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
                     .IsNotNull(ProposalId, "ProposalId", "Proposta é inválido")
             );
         }

@@ -11,9 +11,9 @@ namespace VoteMelhor.Domain.Queries
             return x => x.Email == user.Email && x.Password.Code == user.Password.Code;
         }
 
-        public static Expression<Func<User, bool>> VerifyExist(User user)
+        public static Expression<Func<User, bool>> VerifyExist(string email)
         {
-            return x => x.Email == user.Email;
+            return x => x.Email == email;
         }
     }
 }

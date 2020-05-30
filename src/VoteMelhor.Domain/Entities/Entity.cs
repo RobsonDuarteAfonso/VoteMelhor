@@ -6,6 +6,11 @@ namespace VoteMelhor.Domain.Entities
     {
         public Guid Id { get; protected set; }
 
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public override bool Equals(object obj)
         {
             var compareTo = obj as Entity;

@@ -12,14 +12,14 @@ namespace VoteMelhor.Domain.Commands.Creates
         public string Description { get; set; }
         public DateTime PublicationDate { get; set; }
         public SituationEnum Situation { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
         
         public CreateLawSuitCommand()
         {
             
         }
 
-        public CreateLawSuitCommand(string summary, string description, DateTime publicationDate, SituationEnum situation, int politicalId)
+        public CreateLawSuitCommand(string summary, string description, DateTime publicationDate, SituationEnum situation, Guid politicalId)
         {
             Summary = summary;
             Description = description;
@@ -40,8 +40,7 @@ namespace VoteMelhor.Domain.Commands.Creates
                     .IsLowerOrEqualsThan(PublicationDate, DateTime.Now, "PublicationDate","Data tem que se menor ou igual a data de hoje.")
                     .IsNullOrNullable(PublicationDate, "PublicationDate", "Data é inválida.")
                     .IsNotNull(Situation, "Situation", "Situação é inválido")
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
             );
         }
     }

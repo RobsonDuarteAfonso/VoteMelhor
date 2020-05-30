@@ -6,9 +6,9 @@ namespace VoteMelhor.Domain.Queries
 {
     public static class PartyQueries
     {
-        public static Expression<Func<Party, bool>> VerifyExist(Party party)
+        public static Expression<Func<Party, bool>> VerifyExist(string initials)
         {
-            return x => x.Number == party.Number && x.Initials == party.Initials;
+            return x => x.Initials == initials;
         }
     }
 }

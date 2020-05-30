@@ -24,63 +24,68 @@ namespace VoteMelhor.Domain.Handlers
 
         public ICommandResult Handle(CreateRatingCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
-            }
-
-            var rating = new Rating(command.Rate, command.UserId, command.PoliticalId);
-            var ratingChecked = _repository.VerifyExist(rating);
-            
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
+                }
+
+                var rating = new Rating(command.Rate, command.UserId, command.PoliticalId);
+
+                var ratingChecked = _repository.VerifyExist(rating);
+
+
                 if (ratingChecked != null)
                 {
                     return new CommandResult(false, "Já existe uma classificação.", ratingChecked);
                 }
 
                 _repository.Add(rating);
+
                 return new CommandResult(true, "Classificação adicionada com sucesso.", rating);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", rating);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
 
         public ICommandResult Handle(UpdateRatingCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
-            }
-
-            var rating = _repository.GetById(command.Id);
-                
-            if (rating == null)
-            {
-                return new CommandResult(false, "Você está tentando alterar classificação que não existe.", command);
-            }
-
-            if (rating.UserId != command.UserId || rating.PoliticalId != command.PoliticalId)
-            {
-                return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
-            }
-
-            rating.SetRate(command.Rate);
-
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
+                }
+
+                var rating = _repository.GetById(command.Id);
+
+                if (rating == null)
+                {
+                    return new CommandResult(false, "Você está tentando alterar classificação que não existe.", command);
+                }
+
+                if (rating.UserId != command.UserId || rating.PoliticalId != command.PoliticalId)
+                {
+                    return new CommandResult(false, "Erro nas informações da classificação.", command.Notifications);
+                }
+
+                rating.SetRate(command.Rate);
+
+
                 _repository.Update(rating);
+
                 return new CommandResult(true, "Classificação alterado com sucesso.", rating);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", rating);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
     }

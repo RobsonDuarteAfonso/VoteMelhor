@@ -24,46 +24,51 @@ namespace VoteMelhor.Domain.Handlers
 
         public ICommandResult Handle(CreateProposalCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do Proposta.", command.Notifications);
-            }
-
-            var proposal = new Proposal(command.House, command.ProposalType, command.Numeration, command.Summary, command.Description, command.ProposalDate);
-            var proposalChecked = _repository.VerifyExist(proposal);
-            
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações do Proposta.", command.Notifications);
+                }
+
+                var proposal = new Proposal(command.House, command.ProposalType, command.Numeration, command.Summary, command.Description, command.ProposalDate);
+
+                var proposalChecked = _repository.VerifyExist(proposal.Id);
+
+
                 if (proposalChecked != null)
                 {
                     return new CommandResult(false, "Proposta já existe.", command);
                 }
 
                 _repository.Add(proposal);
+
                 return new CommandResult(true, "Proposta adicionado com sucesso.", proposal);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", proposal);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
 
         public ICommandResult Handle(UpdateProposalCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do Proposta.", command.Notifications);
-            }
-
-            var newProposal = new Proposal(command.House, command.ProposalType, command.Number, command.Summary, command.Description, command.ProposalDate);
-            var proposal = _repository.VerifyExist(newProposal);
-
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações do Proposta.", command.Notifications);
+                }
+
+                var newProposal = new Proposal(command.House, command.ProposalType, command.Number, command.Summary, command.Description, command.ProposalDate);
+
+                var proposal = _repository.VerifyExist(newProposal.Id);
+
+
                 if (proposal == null)
                 {
                     return new CommandResult(false, "Você está tentando alterar um Proposta que não existe.", command);
@@ -77,11 +82,12 @@ namespace VoteMelhor.Domain.Handlers
                 proposal.SetProposalDate(command.ProposalDate);
 
                 _repository.Update(proposal);
+
                 return new CommandResult(true, "Proposta alterado com sucesso.", proposal);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", proposal);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
     }

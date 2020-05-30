@@ -190,7 +190,7 @@ namespace VoteMelhor.WebApi.Raws
         public Parlamentares Parlamentares { get; set; }
     }
 
-    public class PoliticosSenadores_Raw
+    public class Senators_Raw
     {
 
         [JsonProperty("?xml")]

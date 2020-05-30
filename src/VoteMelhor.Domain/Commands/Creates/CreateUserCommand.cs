@@ -2,7 +2,6 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using VoteMelhor.Domain.Interfaces.Commands;
 using VoteMelhor.Domain.Enumations;
-using VoteMelhor.Domain.ValueObjects;
 
 namespace VoteMelhor.Domain.Commands.Creates
 {

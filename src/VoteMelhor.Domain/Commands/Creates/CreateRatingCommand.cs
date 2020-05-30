@@ -10,14 +10,14 @@ namespace VoteMelhor.Domain.Commands.Creates
     {
         public RateEnum Rate { get; set; }
         public Guid UserId { get; set; }
-        public int PoliticalId { get; set; }
+        public Guid PoliticalId { get; set; }
 
         public CreateRatingCommand()
         {
             
         }
 
-        public CreateRatingCommand(RateEnum rate, Guid userId, int politicalId)
+        public CreateRatingCommand(RateEnum rate, Guid userId, Guid politicalId)
         {
             Rate = rate;
             UserId = userId;
@@ -31,8 +31,7 @@ namespace VoteMelhor.Domain.Commands.Creates
                     .Requires()
                     .IsNotEmpty(UserId, "UserId", "Usuário é inválido.")
                     .IsNotNull(Rate, "Rate", "Rate é inválido")
-                    .IsNullOrNullable(PoliticalId, "PoliticalId", "Político é inválido.")
-                    .IsGreaterThan(PoliticalId, 0, "PoliticalId", "Político é inválido.")
+                    .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
             );
         }
     }

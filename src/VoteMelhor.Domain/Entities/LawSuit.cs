@@ -10,10 +10,10 @@ namespace VoteMelhor.Domain.Entities
         public DateTime PublicationDate { get; private set; }
         public DateTime UpdateDate { get; private set; }
         public SituationEnum Situation { get; private set; }
-        public int PoliticalId { get; private set; }
+        public Guid PoliticalId { get; private set; }
         public virtual Political Political { get; private set; }
 
-        public LawSuit(string summary, string description, SituationEnum situation, int politicalid)
+        public LawSuit(string summary, string description, SituationEnum situation, Guid politicalid)
         {
             Summary = summary;
             Description = description;

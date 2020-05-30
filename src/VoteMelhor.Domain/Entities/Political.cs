@@ -3,10 +3,12 @@ using VoteMelhor.Domain.Enumations;
 
 namespace VoteMelhor.Domain.Entities
 {
-    public class Political
+    public class Political : Entity
     {
-        public int Id { get; private set; }
+        public int CongressmanId { get; private set; }
+        public int SenatorId { get; private set; }
         public string Name { get; private set; }
+        public string FullName { get; private set; }
         public StateEnum State { get; private set; }
         public string Image { get; private set; }
         public virtual ICollection<PoliticalParty> PoliticalPartys { get; private set; }
@@ -15,10 +17,12 @@ namespace VoteMelhor.Domain.Entities
         public virtual ICollection<Voting> Votings { get; private set; }
         public virtual ICollection<Position> Positions { get; private set; }
 
-        public Political(int id, string name, StateEnum state, string image)
+        public Political(int congressmanId, int senatorId, string name, string fullname, StateEnum state, string image)
         {
-            Id = id;
+            CongressmanId = congressmanId;
+            SenatorId = senatorId;
             Name = name;
+            FullName = fullname;
             State = state;
             Image = image;
         }
@@ -29,9 +33,33 @@ namespace VoteMelhor.Domain.Entities
 
         }
 
+        public void SetCongresmanId(int congressmanId)
+        {
+            if (CongressmanId < 1)
+            {
+                CongressmanId = congressmanId;
+            }
+        }
+
+        public void SetSenatorId(int senatorId)
+        {
+            if (SenatorId < 1)
+            {
+                SenatorId = senatorId;
+            }
+        }
+
         public void SetName(string name)
         {
             Name = name;
+        }
+
+        public void SetFullName(string fullname)
+        {
+            if (FullName == null)
+            {
+                FullName = fullname;
+            }
         }
 
         public void SetState(StateEnum state)
@@ -42,7 +70,7 @@ namespace VoteMelhor.Domain.Entities
         public void SetImage(string image)
         {
             Image = image;
-        }        
+        }
 
     }
 }

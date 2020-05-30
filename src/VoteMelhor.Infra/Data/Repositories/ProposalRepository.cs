@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.Domain.Queries;
@@ -13,9 +14,9 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public Proposal VerifyExist(Proposal proposal)
+        public Proposal VerifyExist(Guid id)
         {
-            return DbSet.FirstOrDefault(ProposalQueries.VerifyExist(proposal));
+            return DbSet.FirstOrDefault(ProposalQueries.VerifyExist(id));
         }
     }
 }

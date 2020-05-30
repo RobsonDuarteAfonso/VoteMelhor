@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VoteMelhor.Domain.Entities;
@@ -15,9 +16,9 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public IEnumerable<LawSuit> GetAllByPolitical(Political political)
+        public IEnumerable<LawSuit> GetAllByPoliticalId(Guid id)
         {
-            return DbSet.AsNoTracking().Where(LawSuitQueries.GetAllByPolitical(political)).OrderBy(x => x.PublicationDate);
+            return DbSet.AsNoTracking().Where(LawSuitQueries.GetAllByPoliticalId(id)).OrderBy(x => x.PublicationDate);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace VoteMelhor.Infra.Data.Repositories
         {
 
         }
-        public Party VerifyExist(Party party)
+        public Party VerifyExist(string initials)
         {
-            return DbSet.FirstOrDefault(PartyQueries.VerifyExist(party));
+            return DbSet.FirstOrDefault(PartyQueries.VerifyExist(initials));
         }
     }
 }

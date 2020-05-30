@@ -24,56 +24,61 @@ namespace VoteMelhor.Domain.Handlers
 
         public ICommandResult Handle(CreatePositionCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
-            }
-
-            var position = new Position(command.Name, 1, command.PoliticalId);
-            var positionChecked = _repository.VerifyExist(position);
-            
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
+                }
+
+                var position = new Position(command.Name, true, command.PoliticalId);
+
+                var positionChecked = _repository.VerifyExist(position.PoliticalId, position.Name);
+
+
                 if (positionChecked != null)
                 {
                     return new CommandResult(false, "Posição já existe.", command);
                 }
 
                 _repository.Add(position);
+
                 return new CommandResult(true, "Posição adicionado com sucesso.", position);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", position);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
 
         public ICommandResult Handle(UpdatePositionCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
-            }
-
-            var position = _repository.GetById(command.Id);
-
             try
             {
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
+                }
+
+                var position = _repository.GetById(command.Id);
+
+
                 if (position == null)
                 {
                     return new CommandResult(false, "Você está tentando alterar uma posição que não existe.", command);
                 }
 
                 _repository.UpdateCurrent(command.Id, command.PoliticalId);
+
                 return new CommandResult(true, "Posição alterado com sucesso.", position);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", position);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
     }

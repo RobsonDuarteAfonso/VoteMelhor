@@ -5,7 +5,7 @@ namespace VoteMelhor.Domain.Interfaces.Repositories
     public interface IUserRepository : IRepository<User>
     {
         User AuthenticateUser(User user);
-        User VerifyExist(User user);
+        User VerifyExist(string email);
 
     }
 }

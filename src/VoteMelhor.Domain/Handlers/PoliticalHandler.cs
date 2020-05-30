@@ -23,62 +23,103 @@ namespace VoteMelhor.Domain.Handlers
         }
 
         public ICommandResult Handle(CreatePoliticalCommand command)
-        {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do Político.", command.Notifications);
-            }
-
-            var political = new Political(command.Id, command.Name, command.State, command.Image);
-            var politicalChecked = _repository.VerifyExist(political);
-            
+        {            
             try
             {
-                if (politicalChecked != null)
+                command.Validate();
+
+                if (command.Invalid)
+                {
+                    return new CommandResult(false, "Erro nas informações do Político.", command.Notifications);
+                }
+
+                var politicalCheckedId = _repository.VerifyExist(command.CongressmanId, command.SenatorId);
+
+                if (politicalCheckedId != null)
                 {
                     return new CommandResult(false, "Político já existe.", command);
                 }
+                else
+                {
+                    var politicalCheckedFullname = _repository.VerifyExistFullName(command.FullName);
 
-                _repository.Add(political);
-                return new CommandResult(true, "Político adicionado com sucesso.", political);
+                    if (politicalCheckedFullname != null)
+                    {
+                        return new CommandResult(false, "Político já existe.", command);
+                    }
+                }
+
+                var _political = SetPolitical(politicalCheckedId, command, null);
+
+                _repository.Add(_political);
+
+                return new CommandResult(true, "Político adicionado com sucesso.", _political);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", political);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
         }
 
         public ICommandResult Handle(UpdatePoliticalCommand command)
         {
-            command.Validate();
-
-            if (command.Invalid)
-            {
-                return new CommandResult(false, "Erro nas informações do Político.", command.Notifications);
-            }
-
-            var newPolitical = new Political(command.Id, command.Name, command.State, command.Image);
-            var political = _repository.VerifyExist(newPolitical);
-
             try
             {
-                if (political == null)
+                command.Validate();
+
+                if (command.Invalid)
                 {
-                    return new CommandResult(false, "Você está tentando alterar um Político que não existe.", command);
+                    return new CommandResult(false, "Erro nas informações do Político.", command.Notifications);
                 }
 
-                political.SetName(command.Name);
-                political.SetState(command.State);
-                political.SetImage(command.Image);
+                var politicalCheckedId = _repository.VerifyExist(command.CongressmanId, command.SenatorId);
 
-                _repository.Update(political);
-                return new CommandResult(true, "Político alterado com sucesso.", political);
+                if (politicalCheckedId == null)
+                {
+                    var politicalCheckedFullname = _repository.VerifyExistFullName(command.FullName);
+
+                    if (politicalCheckedFullname == null)
+                    {
+                        return new CommandResult(false, "Você está tentando alterar um Político que não existe.", command);
+                    }
+                }
+
+                var _political = SetPolitical(politicalCheckedId, null, command);
+
+                _repository.Update(_political);
+
+                return new CommandResult(true, "Político alterado com sucesso.", _political);
             }
             catch (Exception ex)
             {
-                return new CommandResult(false, $"Erro: {ex.Message}", political);
+                return new CommandResult(false, $"Erro: {ex.Message}", command);
+            }
+        }
+
+        private Political SetPolitical(Political political, CreatePoliticalCommand commandAdd, UpdatePoliticalCommand commandUp)
+        {
+            if (commandAdd != null)
+            {
+                var _political = new Political(
+                commandAdd.CongressmanId,
+                commandAdd.SenatorId,
+                commandAdd.Name,
+                commandAdd.FullName,
+                commandAdd.State,
+                commandAdd.Image
+                );
+
+                return _political;
+            }
+            else
+            {
+                political.SetCongresmanId(commandUp.CongressmanId);
+                political.SetSenatorId(commandUp.SenatorId);
+                political.SetName(commandUp.Name);
+                political.SetState(commandUp.State);
+                political.SetImage(commandUp.Image);
+
+                return political;
             }
         }
     }
