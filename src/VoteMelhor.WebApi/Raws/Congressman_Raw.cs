@@ -6,11 +6,14 @@ namespace VoteMelhor.WebApi.Raws
     public class Dado
     {
 
+        [JsonProperty("email")]
+        public string email { get; set; }
+
         [JsonProperty("id")]
         public int id { get; set; }
 
-        [JsonProperty("uri")]
-        public string uri { get; set; }
+        [JsonProperty("idLegislatura")]
+        public int idLegislatura { get; set; }
 
         [JsonProperty("nome")]
         public string nome { get; set; }
@@ -18,30 +21,27 @@ namespace VoteMelhor.WebApi.Raws
         [JsonProperty("siglaPartido")]
         public string siglaPartido { get; set; }
 
-        [JsonProperty("uriPartido")]
-        public string uriPartido { get; set; }
-
         [JsonProperty("siglaUf")]
         public string siglaUf { get; set; }
 
-        [JsonProperty("idLegislatura")]
-        public int idLegislatura { get; set; }
+        [JsonProperty("uri")]
+        public string uri { get; set; }
+
+        [JsonProperty("uriPartido")]
+        public string uriPartido { get; set; }
 
         [JsonProperty("urlFoto")]
         public string urlFoto { get; set; }
-
-        [JsonProperty("email")]
-        public string email { get; set; }
     }
 
     public class Link
     {
 
-        [JsonProperty("rel")]
-        public string rel { get; set; }
-
         [JsonProperty("href")]
         public string href { get; set; }
+
+        [JsonProperty("rel")]
+        public string rel { get; set; }
     }
 
     public class Congressman_Raw

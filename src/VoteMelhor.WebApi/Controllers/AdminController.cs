@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Xml;
 using VoteMelhor.Domain.Commands;
 using VoteMelhor.Domain.Commands.Creates;
 using VoteMelhor.Domain.Commands.Updates;
@@ -15,10 +12,9 @@ using VoteMelhor.Domain.Entities;
 using VoteMelhor.Domain.Enumations;
 using VoteMelhor.Domain.Handlers;
 using VoteMelhor.Domain.Interfaces.Commands;
-using VoteMelhor.Domain.Interfaces.Repositories;
 using VoteMelhor.WebApi.Raws;
 using VoteMelhor.WebApi.Services;
-
+using VoteMelhor.WebApi.Util;
 
 namespace VoteMelhor.WebApi.Controllers
 {
@@ -32,7 +28,7 @@ namespace VoteMelhor.WebApi.Controllers
 
         [HttpGet]
         [Route("senators")]
-        //[AuthorizeEnum(Perfil.ADM)]
+        [AuthorizeEnum(RoleEnum.ADM)]
         [AllowAnonymous]
         public async Task<CommandResult> GetSenators(
             [FromServices]
@@ -54,8 +50,8 @@ namespace VoteMelhor.WebApi.Controllers
                     Political _political = new Political(
                         0,
                         Convert.ToInt32(itemrecebido.CodigoParlamentar),
-                        itemrecebido.NomeParlamentar,
-                        itemrecebido.NomeCompletoParlamentar,
+                        itemrecebido.NomeParlamentar.ToUpper(),
+                        itemrecebido.NomeCompletoParlamentar.ToUpper(),
                         (StateEnum)Enum.Parse(typeof(StateEnum), itemrecebido.UfParlamentar),
                         itemrecebido.UrlFotoParlamentar
                     );
@@ -86,8 +82,64 @@ namespace VoteMelhor.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("congressmen")]
+        [AuthorizeEnum(RoleEnum.ADM)]
+        [AllowAnonymous]
+        public async Task<CommandResult> GetCongressmen(
+            [FromServices]
+            SenatorCongressmanHandler senatorCongressmanHandler
+        )
+        {
+            var _listCmdResult = new List<ICommandResult>();
+
+            try
+            {
+                var houseRepresentativesService = new HouseRepresentativesService();
+
+                var jsonNet = await houseRepresentativesService.GetListCongressmen();
+
+                foreach (var item in jsonNet.dados)
+                {
+                    var fullName = await houseRepresentativesService.GetDetailsCongressman(item.id);
+                    
+                    Political _political = new Political(
+                        Convert.ToInt32(item.id),
+                        0,
+                        item.nome.ToUpper(),
+                        fullName.ToUpper(),
+                        (StateEnum)Enum.Parse(typeof(StateEnum), item.siglaUf),
+                        item.urlFoto
+                    );
+
+                    string _party = item.siglaPartido;
+
+                    //Correction
+                    if (_party == "PODEMOS")
+                    {
+                        _party = "PODE";
+                    }
+
+                    Position _position = new Position("DEP. FEDERAL", true, _political.Id);
+
+                    SenatorCongressmanCommand _command = new SenatorCongressmanCommand(_political, _position, _party);
+
+                    var _result = (CommandResult)senatorCongressmanHandler.Handle(_command);
+
+                    _listCmdResult.Add(_result);
+                }
+
+                return new CommandResult(true, "Todos os deputados carregados.", _listCmdResult);
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult(false, $"Erro: {ex.Message}", _listCmdResult);
+            }
+        }
+
+
+        [HttpGet]
         [Route("add-all-partys")]
-        //[AuthorizeEnum(Perfil.ADM)]
+        [AuthorizeEnum(RoleEnum.ADM)]
         [AllowAnonymous]
         public CommandResult AddAllPartidos(
             [FromServices]
@@ -105,7 +157,7 @@ namespace VoteMelhor.WebApi.Controllers
 
                 foreach (var item in jsonNet)
                 {
-                    CreatePartyCommand _command = new CreatePartyCommand(item.Nome, item.Sigla, item.Numero, item.Imagem);
+                    CreatePartyCommand _command = new CreatePartyCommand(item.Nome.ToUpper(), item.Sigla.ToUpper(), item.Numero, item.Imagem);
 
                     var _result = (CommandResult)partyHandler.Handle(_command);
 
@@ -113,7 +165,7 @@ namespace VoteMelhor.WebApi.Controllers
 
                     if (_result.Success == false && _result.Message == "Já existe o partido.")
                     {
-                        UpdatePartyCommand _commandUp = new UpdatePartyCommand(item.Nome, item.Sigla, item.Numero, item.Imagem);
+                        UpdatePartyCommand _commandUp = new UpdatePartyCommand(item.Nome.ToUpper(), item.Sigla.ToUpper(), item.Numero, item.Imagem);
 
                         _result = (CommandResult)partyHandler.Handle(_command);
 
