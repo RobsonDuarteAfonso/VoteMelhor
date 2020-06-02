@@ -7,13 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardPoliticalComponent implements OnInit {
 
-  @Input() backgroundRate = '';
-  @Input() textColorRate = '';
-  @Input() textRate = '';
   @Input() imageUrl = '';
+  @Input() initialRate = '';
   @Input() namePolitical = '';
   @Input() positionPolitical = '';
-  @Input() textRateUsers = '';
+  @Input() publicRateColor = '';
+  @Input() publicRateText = '';
 
   constructor() { }
 

@@ -28,5 +28,29 @@ namespace VoteMelhor.Domain.Entities
         {
             Rate = rate;
         }
+
+        public RateEnum CalculateRate(double value)
+        {
+            if (value >= 80)
+            {
+                return RateEnum.EXC;
+            }
+            else if(value < 80 && value >= 60)
+            {
+                return RateEnum.BOM;
+            }
+            else if(value < 60 && value >= 40)
+            {
+                return RateEnum.REG;
+            }
+            else if(value < 40 && value >= 20)
+            {
+                return RateEnum.RUI;
+            }
+            else
+            {
+                return RateEnum.PES;
+            }
+        }
     }
 }

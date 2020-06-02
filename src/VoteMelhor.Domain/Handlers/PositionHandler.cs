@@ -33,9 +33,9 @@ namespace VoteMelhor.Domain.Handlers
                     return new CommandResult(false, "Erro nas informações do posição.", command.Notifications);
                 }
 
-                var position = new Position(command.Name, true, command.PoliticalId);
+                var position = new Position(command.Name, true, command.Participation, command.PoliticalId);
 
-                var positionChecked = _repository.VerifyExist(position.PoliticalId, position.Name);
+                var positionChecked = _repository.VerifyExist(position.PoliticalId, position.Name, position.Participation);
 
 
                 if (positionChecked != null)

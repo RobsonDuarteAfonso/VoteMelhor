@@ -1,1 +1,9 @@
+form {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: rgb(245, 245, 245);
+  padding-top: 28px;
+  border: 1px solid rgb(226, 226, 226);
+}
 

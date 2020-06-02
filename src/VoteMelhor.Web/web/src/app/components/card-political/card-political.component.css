@@ -1,0 +1,38 @@
+.card {
+  max-width: 220px;
+}
+
+.mat-card {
+  background-color: #666666 !important;
+}
+
+.mat-card-image {
+  object-fit: cover;
+  max-width: 220px;
+  max-height: 250px;
+}
+
+.images {
+  display: flex;
+}
+
+.name-political {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.position {
+  font-size: 1.2rem;
+  /* font-weight: bold; */
+}
+
+.card-text {
+  font-size: 1.1rem;
+}
+
+.rate {
+  display: flex;
+  justify-content: center;
+  background-color: red;
+}

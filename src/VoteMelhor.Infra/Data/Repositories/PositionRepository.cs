@@ -14,9 +14,9 @@ namespace VoteMelhor.Infra.Data.Repositories
 
         }
 
-        public Position VerifyExist(Guid politicalId, string name)
+        public Position VerifyExist(Guid politicalId, string name, string participation)
         {
-            return DbSet.FirstOrDefault(PositionQueries.VerifyExist(politicalId, name));
+            return DbSet.FirstOrDefault(PositionQueries.VerifyExist(politicalId, name, participation));
         }
 
         public void UpdateCurrent(Guid id, Guid politicalId)

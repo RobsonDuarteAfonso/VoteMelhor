@@ -106,7 +106,7 @@ namespace VoteMelhor.Domain.Handlers
 
 
                     //Create or Update a relation Political with Position
-                    var _positionChecked = _positionRepository.VerifyExist(command.Position.PoliticalId, command.Position.Name);
+                    var _positionChecked = _positionRepository.VerifyExist(command.Position.PoliticalId, command.Position.Name, command.Position.Participation);
 
                     if (_positionChecked == null)
                     {

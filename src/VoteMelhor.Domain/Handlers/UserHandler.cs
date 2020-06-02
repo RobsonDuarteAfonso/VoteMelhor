@@ -43,7 +43,7 @@ namespace VoteMelhor.Domain.Handlers
 
                 if (user != null)
                 {
-                    return new CommandResult(false, "Já existe um usuário.", newUser);
+                    return new CommandResult(false, "Já existe um usuário com esse email.", newUser);
                 }
 
                 newUser.SetRole(RoleEnum.USR);
@@ -81,7 +81,6 @@ namespace VoteMelhor.Domain.Handlers
                 user.SetName(command.Name);
                 user.SetState(command.State);
 
-
                 _repository.Update(user);
 
                 return new CommandResult(true, "Usuário adicionada com sucesso.", user);
@@ -104,6 +103,7 @@ namespace VoteMelhor.Domain.Handlers
                 }
 
                 var newUser = new User(command.Email, command.Role);
+
                 var user = _repository.VerifyExist(newUser.Email);
 
                 if (user == null)
@@ -135,6 +135,7 @@ namespace VoteMelhor.Domain.Handlers
                 }
 
                 var newUser = new User(command.Email, command.UserStatus);
+
                 var user = _repository.VerifyExist(newUser.Email);
 
                 if (user == null)

@@ -6,13 +6,15 @@ namespace VoteMelhor.Domain.Entities
     {
         public string Name { get; private set; }
         public bool Current { get; private set; }
+        public string Participation { get; private set; }
         public Guid PoliticalId { get; private set; }
         public virtual Political Political { get; private set; }
 
-        public Position(string name, bool current, Guid politicalId)
+        public Position(string name, bool current, string participation, Guid politicalId)
         {
             Name = name;
             Current = current;
+            Participation = participation;
             PoliticalId = politicalId;
         }
 

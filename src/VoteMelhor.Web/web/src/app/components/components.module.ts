@@ -6,6 +6,7 @@ import { ListBestPoliticalComponent } from './list-best-political/list-best-poli
 import { TitleComponent } from './title/title.component';
 import { TitleHomeComponent } from './title-home/title-home.component';
 import { CardPoliticalComponent } from './card-political/card-political.component';
+import { StripComponent } from './strip/strip.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CardPoliticalComponent } from './card-political/card-political.componen
     ListBestPoliticalComponent,
     TitleComponent,
     TitleHomeComponent,
-    CardPoliticalComponent
+    CardPoliticalComponent,
+    StripComponent
   ],
   imports: [
     CommonModule
@@ -22,7 +24,8 @@ import { CardPoliticalComponent } from './card-political/card-political.componen
     MessageComponent,
     ListBestPoliticalComponent,
     TitleComponent,
-    TitleHomeComponent
+    TitleHomeComponent,
+    CardPoliticalComponent
   ]
 })
 export class ComponentsModule { }

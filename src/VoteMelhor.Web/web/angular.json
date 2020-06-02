@@ -123,6 +123,6 @@
   },
   "defaultProject": "web",
   "cli": {
-    "analytics": "f98d6090-6b1d-453b-b20c-234756d7a924"
+    "analytics": false
   }
 }

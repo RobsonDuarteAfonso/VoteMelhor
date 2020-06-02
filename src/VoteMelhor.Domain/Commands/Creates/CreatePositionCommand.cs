@@ -8,6 +8,7 @@ namespace VoteMelhor.Domain.Commands.Creates
     public class CreatePositionCommand : Notifiable, ICommand
     {
         public string Name { get; set; }
+        public string Participation { get; set; }
         public Guid PoliticalId { get; set; }
 
         public CreatePositionCommand()
@@ -15,9 +16,10 @@ namespace VoteMelhor.Domain.Commands.Creates
             
         }
 
-        public CreatePositionCommand(string name, Guid politicalId)
+        public CreatePositionCommand(string name, string participation, Guid politicalId)
         {
             Name = name;
+            Participation = participation;
             PoliticalId = politicalId;
         }
 
@@ -28,6 +30,8 @@ namespace VoteMelhor.Domain.Commands.Creates
                     .Requires()
                     .HasMinLen(Name, 3, "Name", "É necessário ao menos 3 caracteres.")
                     .HasMaxLen(Name, 100, "Name", "Não pode ter mais do que 100 caracteres.")
+                    .HasMinLen(Participation, 3, "Participation", "É necessário ao menos 3 caracteres.")
+                    .HasMaxLen(Participation, 20, "Participation", "Não pode ter mais do que 20 caracteres.")
                     .IsNotEmpty(PoliticalId, "PoliticalId", "Político é inválido.")
             );
         }

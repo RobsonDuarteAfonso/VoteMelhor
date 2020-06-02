@@ -64,7 +64,14 @@ namespace VoteMelhor.WebApi.Controllers
                         _party = "PODE";
                     }
 
-                    Position _position = new Position("SENADOR", true, _political.Id);
+                    var _title = "SENADORA";
+
+                    if (itemrecebido.SexoParlamentar == "Feminino")
+                    {
+                        _title = "SENADORA";
+                    }
+
+                    Position _position = new Position(_title, true, item.Mandato.DescricaoParticipacao, _political.Id);
 
                     SenatorCongressmanCommand _command = new SenatorCongressmanCommand(_political, _position, _party);
 
@@ -100,13 +107,13 @@ namespace VoteMelhor.WebApi.Controllers
 
                 foreach (var item in jsonNet.dados)
                 {
-                    var fullName = await houseRepresentativesService.GetDetailsCongressman(item.id);
+                    var _details = await houseRepresentativesService.GetDetailsCongressman(item.id);
                     
                     Political _political = new Political(
                         Convert.ToInt32(item.id),
                         0,
                         item.nome.ToUpper(),
-                        fullName.ToUpper(),
+                        _details.dados.nomeCivil.ToUpper(),
                         (StateEnum)Enum.Parse(typeof(StateEnum), item.siglaUf),
                         item.urlFoto
                     );
@@ -119,7 +126,7 @@ namespace VoteMelhor.WebApi.Controllers
                         _party = "PODE";
                     }
 
-                    Position _position = new Position("DEP. FEDERAL", true, _political.Id);
+                    Position _position = new Position("DEP. FEDERAL", true, _details.dados.ultimoStatus.condicaoEleitoral, _political.Id);
 
                     SenatorCongressmanCommand _command = new SenatorCongressmanCommand(_political, _position, _party);
 

@@ -17,6 +17,11 @@ namespace VoteMelhor.Infra.Data.Mappings
                 .HasMaxLength(100)
                 .IsRequired();
 
+            builder.Property(c => c.Participation)
+                .HasColumnType("varchar(20)")
+                .HasMaxLength(20)
+                .IsRequired();                
+
             builder.Property(c => c.Current)
                 .HasColumnType("int")
                 .IsRequired();

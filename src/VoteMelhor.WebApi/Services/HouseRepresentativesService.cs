@@ -34,7 +34,7 @@ namespace VoteMelhor.WebApi.Services
             }
         }
 
-        public async Task<string> GetDetailsCongressman(int id)
+        public async Task<CongressmanDetails_Raw> GetDetailsCongressman(int id)
         {
             using (var httpClient = new HttpClient())
             {
@@ -47,7 +47,7 @@ namespace VoteMelhor.WebApi.Services
                     // Site para gerar a class do objeto: jsonutils.com
                     CongressmanDetails_Raw jsonNet = JsonConvert.DeserializeObject<CongressmanDetails_Raw>(apiResponse);
 
-                    return jsonNet.dados.nomeCivil;
+                    return jsonNet;
                 }
                 catch (Exception ex)
                 {

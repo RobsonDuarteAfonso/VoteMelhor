@@ -28,8 +28,8 @@ namespace VoteMelhor.WebApi.Controllers
         [Route("authenticate")]
         [AllowAnonymous]
         public QueryResult Authenticate(
-            [FromBody]UserDto userDto,
-            [FromServices]IUserRepository userRepository
+            [FromBody] UserDto userDto,
+            [FromServices] IUserRepository userRepository
         )
         {
             try
@@ -48,40 +48,34 @@ namespace VoteMelhor.WebApi.Controllers
             catch (Exception ex)
             {
                 return new QueryResult(false, $"Erro: {ex.Message}", new { userDto.Email, userDto.Password });
-            }        
-        }        
+            }
+        }
 
 
+        /*         [HttpGet]
+                [Route("autenticado")]
+                [Authorize]
+                public string Authenticated() => string.Format("Autenticado - {0}", User.Identity.Name);
+         */
 /*         [HttpGet]
-        [Route("autenticado")]
-        [Authorize]
-        public string Authenticated() => string.Format("Autenticado - {0}", User.Identity.Name);
- */
-        [HttpGet]
         [Route("usuario")]
         [AuthorizeEnum(RoleEnum.USR, RoleEnum.ADM, RoleEnum.EDT)]
-        public string Usuario() => "Usuário";
+        public string Usuario() => "Usuário"; */
 
         [HttpPost]
         [Route("")]
         [AllowAnonymous]
         public CommandResult Post(
-            [FromBody]CreateUserCommand command,
-            [FromServices]UserHandler handler
+            [FromBody] CreateUserCommand command,
+            [FromServices] UserHandler handler
         )
         {
             try
             {
-                 if (command != null)
-                {
-                    return (CommandResult)handler.Handle(command);
-                } 
-                else
-                {
-                    return new CommandResult(false, "Informações incompletas do usuário.", command);
-                } 
+                return (CommandResult)handler.Handle(command);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new CommandResult(false, $"Erro: {ex.Message}", command);
             }
