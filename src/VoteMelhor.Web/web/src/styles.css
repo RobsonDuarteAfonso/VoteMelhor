@@ -27,14 +27,50 @@ body {
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
-.error {
+/* .error {
   color: rgb(196, 4, 4);
   font-weight: bold;
   font-size: 1.1rem;
-}
+} */
 
 .Container {
   max-width: 980px;
   margin: 0 auto;
   padding: 0px 15px;
+}
+
+/* Items of forms */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-group-text {
+  background-color: #f8c500 !important;
+}
+
+.form-control {
+  height: 40px;
+  max-width: 400px;
+  color: rgb(128, 128, 128) !important;
+  font-size: 1.4rem;
+}
+
+::placeholder {
+  color: rgb(196, 196, 196) !important;
+  font-size: 1.4rem;
+}
+
+label {
+  float: left;
+  font-weight: bold;
+  color: #999;
+}
+
+button.close {
+  font-size: 20px;
+}
+
+.alert-danger {
+  font-size: 14px;
 }

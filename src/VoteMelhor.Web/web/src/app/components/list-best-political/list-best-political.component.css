@@ -34,7 +34,6 @@ section .cards {
 
 .card-body {
   max-height: 180px;
-  padding-top: 60px;
 }
 
 .material-icons.colorIcon {

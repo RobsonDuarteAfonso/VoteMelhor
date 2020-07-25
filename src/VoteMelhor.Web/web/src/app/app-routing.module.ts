@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProposalComponent } from './pages/proposal/proposal.component';
-import { SearchComponent } from './pages/search/search.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { CreateAccountComponent } from './pages/create-account/create-account.component';
+import { LoginComponent } from './views/login/login.component';
+import { HomeComponent } from './views/home/home.component';
+import { ProposalComponent } from './views/proposal/proposal.component';
+import { SearchComponent } from './views/search/search.component';
+import { ContactComponent } from './views/contact/contact.component';
+import { CreateAccountComponent } from './views/create-account/create-account.component';
 
 
 const routes: Routes = [

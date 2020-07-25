@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using VoteMelhor.Domain.Entities;
+using VoteMelhor.Domain.Enumations;
 
 namespace VoteMelhor.Domain.Queries
 {
@@ -14,6 +15,23 @@ namespace VoteMelhor.Domain.Queries
         public static Expression<Func<Political, bool>> VerifyExistFullName(string fullName)
         {
             return x => x.FullName == fullName;
+        }
+
+        public static Expression<Func<Political, bool>> SearchPoliticals(string name, string state)
+        {
+
+            if ((name != null) && (state != null))
+            {
+                return x => x.Name.Contains(name.ToUpper()) && x.State == (StateEnum)Enum.Parse(typeof(StateEnum), state.ToUpper());
+            }
+            else if (name != null)
+            {
+                return (x => x.Name.Contains(name.ToUpper()));
+            }
+            else
+            {
+                return x => x.State == (StateEnum)Enum.Parse(typeof(StateEnum), state.ToUpper());
+            }
         }
     }
 }

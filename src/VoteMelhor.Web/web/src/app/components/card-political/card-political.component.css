@@ -1,15 +1,12 @@
 .card {
   max-width: 220px;
+  background-color: rgb(218, 218, 218) !important;
 }
 
-.mat-card {
-  background-color: #666666 !important;
-}
-
-.mat-card-image {
+.img-card {
   object-fit: cover;
-  max-width: 220px;
-  max-height: 250px;
+  width: 218px;
+  max-height: 272.5px;
 }
 
 .images {
@@ -23,8 +20,8 @@
 }
 
 .position {
-  font-size: 1.2rem;
-  /* font-weight: bold; */
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .card-text {
@@ -32,7 +29,73 @@
 }
 
 .rate {
+  min-height: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: red;
+  color: white;
+  font-weight: bold;
+  opacity: 80%;
 }
+
+.suit {
+  margin-top: -220px;
+  margin-bottom: 50px;
+}
+.strip {
+  -webkit-clip-path: polygon(100% 51%, 100% 66%, 56% 100%, 37% 100%);
+  clip-path: polygon(100% 51%, 100% 66%, 57% 100%, 37% 100%);
+  min-width: 220px;
+  height: 250px;
+  margin-left: -1px;
+  margin-top: -250px;
+  z-index: 3;
+  opacity: 70%;
+}
+
+.background-red {
+  color: white;
+  background: rgb(231, 32, 32);
+}
+
+.background-blue {
+  color: white;
+  background: rgb(32, 69, 231);
+}
+
+.background-green {
+  color: white;
+  background: rgb(8, 185, 2);
+}
+
+.background-orange {
+  color: black !important;
+  background: rgb(255, 138, 29);
+}
+
+.background-yellow {
+  color: black !important;
+  background: rgb(231, 211, 32);
+}
+
+.color-text-rate-black {
+  color: black;
+}
+
+.color-text-rate-white {
+  color: white;
+}
+
+.text-rate {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  max-width: 135px;
+  min-width: 135px;
+  transform: rotate(-41.5deg);
+  margin-top: -64px;
+  margin-left: 95px;
+}
+

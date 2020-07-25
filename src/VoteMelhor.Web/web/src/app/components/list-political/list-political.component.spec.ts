@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StripComponent } from './strip.component';
+import { ListPoliticalComponent } from './list-political.component';
 
-describe('StripComponent', () => {
-  let component: StripComponent;
-  let fixture: ComponentFixture<StripComponent>;
+describe('ListPoliticalComponent', () => {
+  let component: ListPoliticalComponent;
+  let fixture: ComponentFixture<ListPoliticalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StripComponent ]
+      declarations: [ ListPoliticalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StripComponent);
+    fixture = TestBed.createComponent(ListPoliticalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

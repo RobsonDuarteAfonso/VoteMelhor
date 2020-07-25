@@ -5,7 +5,7 @@ namespace VoteMelhor.Domain.Enumations
     public enum StateEnum
     {
         [Description("Acre")]
-        AC,
+        AC = 1,
         [Description("Alagoas")]
         AL,
         [Description("Amapá")]

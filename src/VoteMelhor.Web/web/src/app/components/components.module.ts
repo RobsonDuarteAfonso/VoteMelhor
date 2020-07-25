@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,7 +7,9 @@ import { ListBestPoliticalComponent } from './list-best-political/list-best-poli
 import { TitleComponent } from './title/title.component';
 import { TitleHomeComponent } from './title-home/title-home.component';
 import { CardPoliticalComponent } from './card-political/card-political.component';
-import { StripComponent } from './strip/strip.component';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { ListPoliticalComponent } from './list-political/list-political.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,17 +18,23 @@ import { StripComponent } from './strip/strip.component';
     TitleComponent,
     TitleHomeComponent,
     CardPoliticalComponent,
-    StripComponent
+    ErrorMsgComponent,
+    ListPoliticalComponent,
+    LoadingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   exports: [
     MessageComponent,
     ListBestPoliticalComponent,
     TitleComponent,
     TitleHomeComponent,
-    CardPoliticalComponent
+    CardPoliticalComponent,
+    ErrorMsgComponent,
+    ListPoliticalComponent,
+    LoadingComponent
   ]
 })
 export class ComponentsModule { }

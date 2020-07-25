@@ -1,4 +1,5 @@
-﻿using VoteMelhor.Domain.Entities;
+﻿using System.Collections.Generic;
+using VoteMelhor.Domain.Entities;
 
 namespace VoteMelhor.Domain.Interfaces.Repositories
 {
@@ -7,5 +8,6 @@ namespace VoteMelhor.Domain.Interfaces.Repositories
         void AddPolitical(Political political);
         Political VerifyExist(int congressmanId, int senatorId);
         Political VerifyExistFullName(string fullName);
+        List<Political> SearchPoliticals(string name, string state);
     }
 }

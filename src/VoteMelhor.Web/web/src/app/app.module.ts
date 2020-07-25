@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { PagesModule } from './pages/pages.module';
+import { PagesModule } from './views/views.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { AccessComponent } from './components/access/access.component';
 

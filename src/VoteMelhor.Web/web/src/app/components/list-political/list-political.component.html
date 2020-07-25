@@ -1,0 +1,14 @@
+<div class="listcard">
+  <app-card-political
+    *ngFor="let political of listPolitical"
+    [imageUrl] = "political.image"
+    [initialRate] = "'PES'"
+    [namePolitical] = "political.name"
+    [positionPolitical] = "political.positions[0].name"
+    [partyPolitical] = "political.politicalPartys[0].party.initials"
+    [statePolitical] = "political.state"
+    [publicRateText] = "'PÉSSIMO'"
+    [rate] = 'political.ratings'
+  >
+  </app-card-political>
+</div>
